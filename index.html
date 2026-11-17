@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>سوق النِّسَب | المعادلة المئوية</title>
 <meta name="description" content="درس تفاعلي في المعادلة المئوية لطلاب ثاني متوسط: كلّم البيّاعين، احسب الخصومات والأرباح، واجمع النجوم.">
+<meta name="author" content="فهد القحطاني">
+<meta name="copyright" content="© 2026 فهد القحطاني. جميع الحقوق محفوظة.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FBF3E4">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18120D">
 <meta name="color-scheme" content="light dark">
@@ -111,6 +113,8 @@ h1.title{font-size:30px;line-height:1.35;font-weight:800;margin-top:6px}
 .tile.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:12px;background:linear-gradient(135deg,var(--gold-soft),var(--surface))}
 .tile.wide b{margin-top:0}
 .foot{margin-top:18px;text-align:center;font-size:13px;color:var(--ink2);line-height:1.6}
+.rights{margin-top:14px;text-align:center;font-size:13px;color:var(--ink2);line-height:1.6}
+.rights b{color:var(--ink);font-weight:800}
 
 /* ---------- map ---------- */
 .mapwrap{padding:14px 14px calc(env(safe-area-inset-bottom,0px) + 26px)}
@@ -398,6 +402,7 @@ i.prod{background:var(--gold)} i.sold{background:var(--part)}
         <button class="tile wide" data-cert id="certTile" hidden><span class="ti">🏅</span><span><b>شهادتي</b><br><small>شهادة تاجر النِّسَب</small></span></button>
       </div>
       <p class="foot">رياضيات ثاني متوسط • الفصل الرابع: النسبة المئوية<br>درس: المعادلة المئوية</p>
+      <p class="rights">© ٢٠٢٦ جميع الحقوق محفوظة لـ <b>فهد القحطاني</b></p>
     </div>
   </section>
 
@@ -408,7 +413,7 @@ i.prod{background:var(--gold)} i.sold{background:var(--part)}
       <div class="tt"><b>خريطة السوق 🗺️</b><small>اختر محطة وابدأ السوالف</small></div>
       <span class="coins" data-total>⭐ ٠</span>
     </header>
-    <div class="scroll"><div class="mapwrap"><div class="prog" id="mapProg"></div><ol class="street" id="street"></ol></div></div>
+    <div class="scroll"><div class="mapwrap"><div class="prog" id="mapProg"></div><ol class="street" id="street"></ol><p class="rights">© ٢٠٢٦ جميع الحقوق محفوظة لـ <b>فهد القحطاني</b></p></div></div>
   </section>
 
   <!-- CHAT -->
@@ -459,6 +464,7 @@ i.prod{background:var(--gold)} i.sold{background:var(--part)}
       <input id="certName" maxlength="28" autocomplete="off" enterkeyhint="done" placeholder="اسمك هنا…">
     </label>
     <p class="mnote">📸 صوّر الشاشة واحتفظ بشهادتك أو أرسلها لمعلمك!</p>
+    <p class="rights">© ٢٠٢٦ جميع الحقوق محفوظة لـ <b>فهد القحطاني</b></p>
   </div>
 </div>
 
@@ -1192,6 +1198,7 @@ document.addEventListener('keydown', function (e) { if (e.key === 'Escape') clos
 /* =========================================================
    الملخص + المثلث السحري
    ========================================================= */
+var RIGHTS = '<p class="rights">© ٢٠٢٦ جميع الحقوق محفوظة لـ <b>فهد القحطاني</b></p>';
 function buildSheet() {
   var c1 = 0.85 * 920, c2 = 62 / 186, c3 = 210 / 0.75;
   var html =
@@ -1239,7 +1246,8 @@ function buildSheet() {
       eq('1.2 × 0.8 = ' + fmt(1.2 * 0.8), 'step') +
       '<p class="note">' + rich('يعني السعر النهائي = ' + fmt(1.2 * 0.8 * 100) + '% من الأصلي (أقل منه) لأن الخصم انحسب من رقم أكبر.') + '</p></div>' +
 
-    '<button class="cta" type="button" data-go="map">جرّب في السوق 🚪</button>';
+    '<button class="cta" type="button" data-go="map">جرّب في السوق 🚪</button>' +
+    RIGHTS;
   $('#sheetBody').innerHTML = html;
 
   var OUT = {
@@ -1276,7 +1284,7 @@ function buildSolver() {
     '<div class="sec"><h2>وش تبي تطلع؟</h2><div class="seg" role="tablist">' +
       '<button type="button" data-m="p" role="tab">الجزء</button><button type="button" data-m="r" role="tab">النسبة</button><button type="button" data-m="w" role="tab">الكل</button>' +
     '</div><div id="solverFields"></div></div>' +
-    '<div class="sec" id="solverOut" aria-live="polite"></div>';
+    '<div class="sec" id="solverOut" aria-live="polite"></div>' + RIGHTS;
   $$('.seg button').forEach(function (b) {
     b.addEventListener('click', function () { setMode(b.getAttribute('data-m')); });
   });
