@@ -1,0 +1,1365 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<title>سوق النِّسَب | المعادلة المئوية</title>
+<meta name="description" content="درس تفاعلي في المعادلة المئوية لطلاب ثاني متوسط: كلّم البيّاعين، احسب الخصومات والأرباح، واجمع النجوم.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FBF3E4">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18120D">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐪</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF3E4;--bg2:#F1E2C6;--surface:#FFFFFF;--surface2:#FFF8EC;--ink:#2A1E14;--ink2:#6E5A47;--line:#EADBC3;
+  --brand:#0B7A5C;--brand2:#086049;--brand-soft:#D5F1E6;
+  --gold:#F59F00;--gold-ink:#8A5A00;--gold-soft:#FFF0C2;
+  --part:#E8590C;--part-soft:#FFE6D5;
+  --rate:#7048E8;--rate-soft:#ECE6FF;
+  --whole:#1971C2;--whole-soft:#DDEBFA;
+  --ok:#2F9E44;--ok-soft:#E0F5E4;--bad:#E03131;--bad-soft:#FFE3E3;
+  --tip:#FFF4CC;--tip-line:#F1D36A;
+  --wall:#7A4A2A;--wood:#C0814F;--wood2:#8E5532;
+  --shadow:0 1px 2px rgba(70,45,15,.06),0 8px 22px rgba(70,45,15,.08);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --font:"Baloo Bhaijaan 2","Segoe UI",Tahoma,"Geeza Pro",system-ui,sans-serif;
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#18120D;--bg2:#100C08;--surface:#241B14;--surface2:#2E241B;--ink:#F7ECDF;--ink2:#BDA994;--line:#3E3125;
+  --brand:#1F9A75;--brand2:#157559;--brand-soft:#123A2E;
+  --gold:#FFC53D;--gold-ink:#FFD877;--gold-soft:#3A2C0C;
+  --part:#FF8A4C;--part-soft:#3D2416;
+  --rate:#A48FFF;--rate-soft:#2A2250;
+  --whole:#5AAEF5;--whole-soft:#15304A;
+  --ok:#51CF66;--ok-soft:#173A20;--bad:#FF6B6B;--bad-soft:#401A1A;
+  --tip:#352B12;--tip-line:#6B5821;
+  --wall:#4A2D1A;--wood:#9A6438;--wood2:#6E4123;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.35);
+}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{height:100%;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior:none}
+body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.65;overscroll-behavior:none;-webkit-font-smoothing:antialiased}
+#app{position:relative;height:100vh;height:100dvh;max-width:540px;margin:0 auto;background:var(--bg);overflow:hidden}
+@media (min-width:600px){body{background:var(--bg2)}#app{box-shadow:0 0 0 1px var(--line),0 30px 80px rgba(0,0,0,.12)}}
+.screen{position:absolute;top:0;right:0;bottom:0;left:0;display:none;flex-direction:column}
+.screen.active{display:flex;animation:enter .32s var(--ease)}
+@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--rate);outline-offset:2px}
+h1,h2,h3,p{margin:0}
+b,strong{font-weight:700}
+
+/* ---------- top bars ---------- */
+.topbar{flex:none;position:relative;display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 10px) 12px 10px;background:var(--bg);border-bottom:1px solid var(--line);z-index:2}
+.back,.icon-btn{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--surface);box-shadow:var(--shadow);flex:none;transition:transform .12s var(--ease)}
+.back:active,.icon-btn:active{transform:scale(.92)}
+.back svg{width:22px;height:22px}
+.icon-btn{font-size:20px}
+.tt{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.3}
+.tt b{font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tt small{font-size:13px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.coins{flex:none;display:inline-flex;align-items:center;gap:4px;background:var(--gold-soft);color:var(--gold-ink);font-weight:800;border-radius:999px;padding:3px 12px;font-size:16px;white-space:nowrap}
+.coins.bump{animation:bump .5s var(--ease)}
+@keyframes bump{40%{transform:scale(1.25)}}
+.hav{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:24px;flex:none}
+.pbar{position:absolute;bottom:-1px;right:0;left:0;height:3px}
+.pbar i{display:block;height:100%;width:0;background:var(--brand);transition:width .5s var(--ease);border-radius:3px 0 0 3px}
+
+/* ---------- home ---------- */
+.home{padding:calc(env(safe-area-inset-top,0px) + 12px) 16px calc(env(safe-area-inset-bottom,0px) + 26px)}
+.hbar{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.brandname{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:800;flex:1;min-width:0}
+.logo{width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800;box-shadow:0 4px 0 var(--brand2);flex:none}
+.hero{position:relative;margin:0 -6px}
+.stall{display:block;width:100%;height:auto}
+.stall .sh{fill:rgba(60,40,10,.13)}
+.stall .wall{fill:var(--wall)}
+.stall .shelf,.stall .post,.stall .ctop{fill:var(--wood2)}
+.stall .aw1{fill:var(--brand)}
+.stall .aw2{fill:#FFF6E6}
+.stall .awtop{fill:var(--brand2)}
+.stall .counter{fill:var(--wood)}
+.stall .plaque{fill:var(--gold)}
+.stall .ptext{fill:#5C3B00;font:800 24px var(--font)}
+.stall .date{fill:#5E2E0E}
+.stall .orange{fill:#F08C00}
+.stall .lime{fill:#74B816}
+.stall .jar1{fill:#FFD43B}.stall .jar2{fill:#FF8787}.stall .jar3{fill:#74C0FC}.stall .jar4{fill:#B197FC}
+.stall .rope{stroke:#5C3B00;stroke-width:2}
+.stall .lamp{fill:var(--gold)}
+.camel{position:absolute;left:3%;bottom:4%;font-size:54px;line-height:1;animation:bob 2.8s ease-in-out infinite;filter:drop-shadow(0 4px 2px rgba(0,0,0,.18))}
+.say-hero{position:absolute;left:21%;bottom:30%;background:var(--surface);padding:3px 12px;border-radius:14px 14px 14px 4px;font-weight:800;font-size:15px;box-shadow:var(--shadow);animation:bob 2.8s ease-in-out infinite .2s}
+.coin{position:absolute;width:34px;height:34px;border-radius:50%;background:var(--gold);color:#5C3B00;font-weight:800;font-size:18px;display:grid;place-items:center;box-shadow:0 3px 0 #C77C02;animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+h1.title{font-size:30px;line-height:1.35;font-weight:800;margin-top:6px}
+.hl{color:var(--brand)}
+.lead{color:var(--ink2);margin-top:8px;font-size:17px}
+.cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:58px;margin-top:18px;border-radius:18px;background:var(--brand);color:#fff;font-size:20px;font-weight:800;box-shadow:0 5px 0 var(--brand2);transition:transform .12s var(--ease),box-shadow .12s var(--ease)}
+.cta:active{transform:translateY(4px);box-shadow:0 1px 0 var(--brand2)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;text-align:start;padding:14px;border-radius:18px;background:var(--surface);box-shadow:var(--shadow);transition:transform .12s var(--ease)}
+.tile:active{transform:scale(.97)}
+.tile .ti{font-size:28px;line-height:1.2}
+.tile b{font-size:17px;margin-top:6px}
+.tile small{font-size:13px;color:var(--ink2);line-height:1.45}
+.tile.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:12px;background:linear-gradient(135deg,var(--gold-soft),var(--surface))}
+.tile.wide b{margin-top:0}
+.foot{margin-top:18px;text-align:center;font-size:13px;color:var(--ink2);line-height:1.6}
+
+/* ---------- map ---------- */
+.mapwrap{padding:14px 14px calc(env(safe-area-inset-bottom,0px) + 26px)}
+.prog{background:var(--surface);border-radius:18px;padding:12px 14px;box-shadow:var(--shadow);margin-bottom:14px}
+.prog-top{display:flex;justify-content:space-between;font-weight:800;font-size:15px}
+.ptrack{height:10px;border-radius:5px;background:var(--line);margin-top:8px;overflow:hidden}
+.ptrack i{display:block;height:100%;background:linear-gradient(270deg,var(--gold),var(--brand));border-radius:5px;transition:width .6s var(--ease)}
+.street{list-style:none;margin:0;padding:0;position:relative}
+.street::before{content:"";position:absolute;top:30px;bottom:30px;right:20px;border-right:3px dashed var(--line)}
+.stop{position:relative;display:flex;align-items:center;gap:10px;padding:6px 0}
+.dot{position:relative;z-index:1;width:43px;height:43px;flex:none;border-radius:50%;background:var(--surface);box-shadow:inset 0 0 0 3px var(--line);display:grid;place-items:center;font-weight:800;color:var(--ink2)}
+.stop.done .dot{background:var(--ok);box-shadow:none;color:#fff}
+.stop.next .dot{background:var(--brand);box-shadow:0 0 0 5px var(--brand-soft);color:#fff}
+.shop{flex:1;min-width:0;display:flex;align-items:center;gap:12px;text-align:start;background:var(--surface);border-radius:20px;padding:12px;box-shadow:var(--shadow);transition:transform .12s var(--ease)}
+.shop:active{transform:scale(.98)}
+.stop.next .shop{box-shadow:inset 0 0 0 2px var(--brand),var(--shadow)}
+.sicon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:28px;flex:none}
+.sbody{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.35}
+.sbody b{font-size:17px}
+.sbody small{font-size:13.5px;color:var(--ink2)}
+.sbody small .q{font-size:13px;padding:0 5px}
+.stars{color:var(--gold);font-size:16px;letter-spacing:2px;margin-top:2px}
+.stars em{font-style:normal;color:var(--line)}
+.badge{align-self:flex-start;margin-top:4px;font-size:12.5px;font-weight:800;background:var(--brand-soft);color:var(--brand);padding:1px 10px;border-radius:999px}
+.chev{flex:none;color:var(--ink2);width:22px;height:22px}
+
+/* ---------- chat ---------- */
+.chat{display:flex;flex-direction:column;gap:6px;padding:14px 12px 22px}
+.msg{display:flex;align-items:flex-start;gap:8px}
+.msg.me{justify-content:flex-end}
+.msg .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:21px;flex:none}
+.msg.cont .av{visibility:hidden;height:0}
+.bubble{max-width:84%;background:var(--surface);padding:7px 14px 8px;border-radius:20px;border-start-start-radius:6px;box-shadow:var(--shadow);animation:pop .3s var(--ease);transform-origin:top right;word-wrap:break-word;overflow-wrap:break-word}
+.msg.cont .bubble{border-start-start-radius:20px}
+.msg.me .bubble{background:var(--brand);color:#fff;border-radius:20px;border-start-end-radius:6px;transform-origin:top left}
+.msg.guide .bubble{background:var(--tip);box-shadow:inset 0 0 0 1.5px var(--tip-line)}
+.who{display:block;font-size:13px;font-weight:800;color:var(--ink2);margin-bottom:1px}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
+.dots{display:inline-flex;gap:4px;padding:8px 2px 6px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--ink2);opacity:.45;animation:blink 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes blink{30%{opacity:1;transform:translateY(-3px)}}
+.msg.me .q{background:rgba(255,255,255,.22);color:#fff}
+
+.card{background:var(--surface);border-radius:22px;padding:14px;box-shadow:var(--shadow);margin:6px 0;animation:pop .35s var(--ease)}
+.ctitle{font-weight:800;font-size:16px;margin-bottom:6px;text-align:center}
+.eq{unicode-bidi:isolate;direction:rtl;text-align:center;font-size:23px;font-weight:700;line-height:1.75;padding:2px 0}
+.eq.big{font-size:27px}
+.eq.step{font-size:20px;text-align:start;padding:5px 12px;background:var(--surface2);border-radius:12px;margin:5px 0}
+.q{display:inline-block;unicode-bidi:isolate;padding:0 7px;border-radius:9px;font-weight:800;line-height:1.5}
+.q-p{color:var(--part);background:var(--part-soft)}
+.q-r{color:var(--rate);background:var(--rate-soft)}
+.q-w{color:var(--whole);background:var(--whole-soft)}
+.q.unk{color:#fff;animation:glow 1.6s ease-in-out infinite}
+.q-p.unk{background:var(--part)}.q-r.unk{background:var(--rate)}.q-w.unk{background:var(--whole)}
+@keyframes glow{50%{transform:scale(1.1)}}
+.note{color:var(--ink2);font-size:15px;margin-top:6px;line-height:1.6}
+.ans{margin-top:8px;text-align:center;font-size:18px;font-weight:700}
+.ans b{color:var(--ok);font-size:22px}
+
+.intro{display:flex;gap:12px;align-items:center}
+.iicon{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;font-size:30px;flex:none}
+.intro b{font-size:18px}
+.intro p{font-size:15px;color:var(--ink2);line-height:1.5}
+.intro small{display:block;font-size:12.5px;color:var(--ink2);opacity:.85;margin-top:2px}
+
+.g100{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:240px;margin:4px auto 8px}
+.g100 i{display:block;padding-top:100%;border-radius:4px;background:var(--line)}
+.g100 i.on{background:var(--part);animation:cell .35s var(--ease) both}
+@keyframes cell{from{transform:scale(.3);opacity:.3}}
+
+.bars{display:grid;gap:8px;margin:8px 0 2px}
+.brow{display:grid;grid-template-columns:58px 1fr auto;align-items:center;gap:8px}
+.bname{font-size:14px;font-weight:800;line-height:1.15}
+.bname small{display:block;font-weight:700;font-size:12.5px;color:var(--ink2)}
+.btrack{height:24px;border-radius:8px;background:var(--surface2);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.btrack i{display:block;height:100%;border-radius:8px;transform-origin:right center;animation:grow .9s var(--ease) both}
+.brow.w i{background:var(--whole)}.brow.p i{background:var(--part)}
+.bval{font-weight:800;min-width:46px;text-align:center}
+.bval .unk{color:#fff;background:var(--ink2);border-radius:8px;padding:0 10px;display:inline-block;animation:glow 1.6s ease-in-out infinite}
+.brow.w .bval .unk{background:var(--whole)}.brow.p .bval .unk{background:var(--part)}
+.bname .unk{color:var(--rate)}
+@keyframes grow{from{transform:scaleX(0)}}
+
+.conv{display:grid;gap:6px}
+.crow{display:flex;align-items:center;justify-content:center;gap:12px;font-size:21px;font-weight:800;background:var(--surface2);border-radius:12px;padding:5px 8px}
+.crow .arr{color:var(--ink2);font-size:18px}
+
+.rule{text-align:center}
+.rule-t{font-weight:800;color:var(--ink2);font-size:15px}
+.legend{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:6px}
+.legend .q{font-size:14px}
+
+.fc{display:grid;gap:10px}
+.fc-row{display:grid;grid-template-columns:66px 1fr;gap:8px;align-items:center}
+.fc-row b{font-size:14px}
+.fc-b{display:grid;gap:4px}
+.fc-l{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700}
+.fc-l i{height:14px;border-radius:7px;flex:none;transform-origin:right center;animation:grow .9s var(--ease) both}
+i.prod{background:var(--gold)} i.sold{background:var(--part)}
+.fc-leg{display:flex;gap:14px;justify-content:center;font-size:13px;margin-top:10px;color:var(--ink2)}
+.fc-leg i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:middle;margin-inline-end:4px}
+
+.done{text-align:center;padding:4px}
+.done .big{font-size:54px;line-height:1.15}
+.done b{font-size:20px}
+.done .st{font-size:36px;color:var(--gold);letter-spacing:6px;line-height:1.3}
+.done .st em{font-style:normal;color:var(--line)}
+.done p{color:var(--ink2)}
+
+/* ---------- dock ---------- */
+.dock{flex:none;position:relative;background:var(--surface);border-top:1px solid var(--line);padding:10px 12px calc(env(safe-area-inset-bottom,0px) + 10px);box-shadow:0 -8px 24px rgba(60,40,10,.07);z-index:2}
+.dock:empty{display:none}
+.dock>*{animation:rise .3s var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}}
+.qrow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;min-height:34px}
+.qlabel{font-weight:800;font-size:16px;line-height:1.4}
+.hintbtn{flex:none;padding:2px 12px;min-height:36px;border-radius:999px;background:var(--tip);box-shadow:inset 0 0 0 1.5px var(--tip-line);font-size:14px;font-weight:800}
+.hintbtn:disabled{opacity:.45}
+.choices{display:grid;gap:8px}
+.choices.two{grid-template-columns:1fr 1fr}
+.chip{min-height:52px;padding:8px 12px;border-radius:16px;background:var(--surface2);box-shadow:inset 0 0 0 2px var(--line),0 3px 0 var(--line);font-size:17px;font-weight:700;line-height:1.4;transition:transform .12s var(--ease),box-shadow .12s}
+.chip:active{transform:translateY(2px);box-shadow:inset 0 0 0 2px var(--brand),0 1px 0 var(--line)}
+.chip.wrong{background:var(--bad-soft);color:var(--bad);box-shadow:inset 0 0 0 2px var(--bad);opacity:.6;animation:shake .4s}
+.chip.wrong .q{background:transparent;color:inherit}
+.chip.right{background:var(--ok-soft);box-shadow:inset 0 0 0 2px var(--ok)}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.shake{animation:shake .4s}
+.inbar{display:flex;gap:8px}
+.display{flex:1;min-width:0;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 16px;border-radius:16px;background:var(--surface2);box-shadow:inset 0 0 0 2px var(--brand);font-size:28px;font-weight:800;overflow:hidden}
+.display .v{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+.display .v::after{content:"";display:inline-block;width:2px;height:.95em;background:var(--brand);margin-left:3px;vertical-align:-.1em;animation:caret 1s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
+.display .ph{font-size:16px;font-weight:600;color:var(--ink2)}
+.display .u{font-size:17px;color:var(--ink2);font-weight:800;flex:none}
+.send{flex:none;min-width:96px;border-radius:16px;background:var(--brand);color:#fff;font-size:18px;font-weight:800;box-shadow:0 4px 0 var(--brand2);transition:transform .12s var(--ease),opacity .2s}
+.send:active{transform:translateY(3px);box-shadow:0 1px 0 var(--brand2)}
+.send:disabled{opacity:.4;box-shadow:none}
+.keys{direction:ltr;display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:9px}
+.key{height:52px;border-radius:14px;background:var(--surface2);box-shadow:inset 0 0 0 1.5px var(--line),0 3px 0 var(--line);font-size:25px;font-weight:700;transition:transform .08s}
+.key:active{transform:translateY(2px);box-shadow:inset 0 0 0 1.5px var(--line);background:var(--line)}
+.key.fn{font-size:21px;color:var(--ink2)}
+@media (max-height:700px){.key{height:46px;font-size:22px}.display{min-height:50px;font-size:24px}.chip{min-height:48px}}
+@media (max-height:600px){.key{height:41px}.qrow{margin-bottom:5px}}
+.endbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{min-height:54px;border-radius:16px;font-weight:800;font-size:17px;padding:0 14px;display:flex;align-items:center;justify-content:center;gap:6px;transition:transform .12s var(--ease)}
+.btn.pri{background:var(--brand);color:#fff;box-shadow:0 4px 0 var(--brand2)}
+.btn.sec{background:var(--surface2);box-shadow:inset 0 0 0 2px var(--line)}
+.btn:active{transform:translateY(3px)}
+.btn svg{width:20px;height:20px}
+.plus{position:absolute;left:50%;z-index:5;font-weight:800;color:var(--gold-ink);background:var(--gold-soft);padding:2px 16px;border-radius:999px;pointer-events:none;box-shadow:var(--shadow);animation:plus 1.1s var(--ease) forwards}
+@keyframes plus{0%{opacity:0;transform:translate(-50%,10px)}20%{opacity:1}100%{opacity:0;transform:translate(-50%,-46px)}}
+
+/* ---------- sheet & solver ---------- */
+.page{padding:14px 14px calc(env(safe-area-inset-bottom,0px) + 30px);display:grid;gap:14px}
+.sec{background:var(--surface);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+.sec h2{font-size:19px;font-weight:800;margin-bottom:6px}
+.cases{display:grid;gap:10px;margin-top:6px}
+.case{border-radius:16px;padding:10px 12px;background:var(--surface2);border-right:5px solid var(--part)}
+.case.r{border-right-color:var(--rate)}.case.w{border-right-color:var(--whole)}
+.case h3{font-size:17px;font-weight:800}
+.case p{font-size:15px;color:var(--ink2)}
+.case .eq.step{background:var(--surface)}
+.list{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.list li{background:var(--surface2);border-radius:14px;padding:8px 12px;line-height:1.6}
+.tri{display:block;width:100%;max-width:250px;margin:6px auto 0;height:auto;overflow:visible}
+.tri text{font-family:var(--font);font-weight:800;font-size:40px;text-anchor:middle;pointer-events:none}
+.tri .tp{fill:var(--part)}.tri .tr{fill:var(--rate)}.tri .tw{fill:var(--whole)}
+.tri .reg{cursor:pointer;outline:none}
+.tri .reg polygon{fill:var(--surface2);transition:fill .2s}
+.tri .reg.on polygon{fill:var(--ink)}
+.tri .reg.on text{fill:var(--bg)}
+.tri .edge{fill:none;stroke:var(--ink);stroke-width:3.5;stroke-linejoin:round;pointer-events:none}
+.tri .xop{fill:var(--surface);stroke:var(--ink);stroke-width:2;pointer-events:none}
+.tri .xt{font-size:18px;fill:var(--ink)}
+.tri-out{min-height:96px;text-align:center;margin-top:8px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--surface2);padding:5px;border-radius:16px}
+.seg button{min-height:46px;border-radius:12px;font-weight:800;font-size:15.5px;color:var(--ink2);line-height:1.2}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.seg button.on[data-m="p"]{color:var(--part)}.seg button.on[data-m="r"]{color:var(--rate)}.seg button.on[data-m="w"]{color:var(--whole)}
+.field{display:grid;gap:3px;margin-top:12px}
+.field label{font-weight:800;font-size:15px}
+.fwrap{position:relative}
+.field input{font:inherit;font-size:22px;font-weight:700;min-height:54px;border-radius:14px;border:0;box-shadow:inset 0 0 0 2px var(--line);background:var(--surface2);color:var(--ink);padding:0 14px 0 64px;width:100%;direction:ltr;text-align:right;-webkit-appearance:none;appearance:none}
+.field input:focus{outline:none;box-shadow:inset 0 0 0 2.5px var(--brand)}
+.funit{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink2);font-weight:800;pointer-events:none}
+.result-big{text-align:center;font-size:30px;font-weight:800;margin:6px 0}
+
+/* ---------- modal / certificate ---------- */
+.modal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:50;background:rgba(20,12,4,.55);display:flex;align-items:flex-end;justify-content:center;animation:fade .2s}
+.modal[hidden]{display:none}
+@keyframes fade{from{opacity:0}}
+.mbox{position:relative;width:100%;max-width:540px;max-height:94%;overflow-y:auto;background:var(--bg);border-radius:26px 26px 0 0;padding:14px 16px calc(env(safe-area-inset-bottom,0px) + 18px);animation:up .4s var(--ease);overscroll-behavior:contain}
+@keyframes up{from{transform:translateY(100%)}}
+.mtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.mtop b{font-size:18px}
+.certificate{border-radius:20px;padding:22px 16px 18px;text-align:center;background:linear-gradient(160deg,#FFF8E6,#FFE6B0);color:#3B2A10;box-shadow:inset 0 0 0 4px #FFF8E6,inset 0 0 0 7px #D9A441,0 10px 30px rgba(0,0,0,.15)}
+.certificate .medal{font-size:52px;line-height:1.1}
+.certificate h2{font-size:24px;font-weight:800;color:#7A4A00}
+.certificate .cname{font-size:30px;font-weight:800;color:#0B7A5C;margin:4px 0;word-wrap:break-word;overflow-wrap:break-word}
+.certificate p{font-size:15px;line-height:1.6}
+.certificate .ceq{font-size:24px;font-weight:800;margin:6px 0;unicode-bidi:isolate}
+.certificate .ceq span:nth-child(1){color:#E8590C}.certificate .ceq span:nth-child(2){color:#7048E8}.certificate .ceq span:nth-child(3){color:#1971C2}
+.certificate .cmeta{display:flex;justify-content:space-between;gap:8px;margin-top:10px;font-size:13px;color:#7A5A2A}
+.namefield{display:grid;gap:4px;margin-top:14px;font-weight:800;font-size:15px}
+.namefield input{font:inherit;font-size:18px;font-weight:700;min-height:52px;border-radius:14px;border:0;box-shadow:inset 0 0 0 2px var(--line);background:var(--surface);color:var(--ink);padding:0 14px;width:100%}
+.namefield input:focus{outline:none;box-shadow:inset 0 0 0 2.5px var(--brand)}
+.mnote{text-align:center;font-size:14px;color:var(--ink2);margin-top:10px}
+
+#fx{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:60}
+
+@media (hover:hover) and (pointer:fine){
+  .chip:hover{box-shadow:inset 0 0 0 2px var(--brand),0 3px 0 var(--line)}
+  .shop:hover,.tile:hover{box-shadow:inset 0 0 0 2px var(--brand),var(--shadow)}
+  .cta:hover,.btn.pri:hover,.send:hover{filter:brightness(1.07)}
+  .key:hover{background:var(--line)}
+  .tri .reg:hover polygon{fill:var(--line)}
+  .tri .reg.on:hover polygon{fill:var(--ink)}
+}
+@media (max-width:360px){
+  body{font-size:16px}
+  h1.title{font-size:26px}
+  .eq.big{font-size:23px}.eq{font-size:21px}
+  .send{min-width:84px;font-size:17px}
+  .tile{padding:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- HOME -->
+  <section class="screen" id="s-home" aria-label="الرئيسية">
+    <div class="scroll home">
+      <header class="hbar">
+        <div class="brandname"><span class="logo">٪</span><span>سوق النِّسَب</span></div>
+        <span class="coins" data-total>⭐ ٠</span>
+        <button class="icon-btn" data-mute aria-label="الصوت">🔊</button>
+      </header>
+      <div class="hero" aria-hidden="true">
+        <svg class="stall" viewBox="0 0 320 200">
+          <ellipse class="sh" cx="160" cy="191" rx="150" ry="8"/>
+          <rect class="wall" x="36" y="62" width="248" height="126" rx="4"/>
+          <rect class="jar1" x="64" y="76" width="20" height="22" rx="6"/>
+          <rect class="jar2" x="92" y="80" width="18" height="18" rx="6"/>
+          <rect class="jar3" x="206" y="78" width="20" height="20" rx="6"/>
+          <rect class="jar4" x="234" y="74" width="20" height="24" rx="6"/>
+          <rect class="shelf" x="50" y="97" width="220" height="6" rx="3"/>
+          <rect class="post" x="28" y="56" width="12" height="134" rx="4"/>
+          <rect class="post" x="280" y="56" width="12" height="134" rx="4"/>
+          <g>
+            <rect class="aw1" x="12" y="32" width="37" height="26"/><circle class="aw1" cx="30.5" cy="58" r="18.5"/>
+            <rect class="aw2" x="49" y="32" width="37" height="26"/><circle class="aw2" cx="67.5" cy="58" r="18.5"/>
+            <rect class="aw1" x="86" y="32" width="37" height="26"/><circle class="aw1" cx="104.5" cy="58" r="18.5"/>
+            <rect class="aw2" x="123" y="32" width="37" height="26"/><circle class="aw2" cx="141.5" cy="58" r="18.5"/>
+            <rect class="aw1" x="160" y="32" width="37" height="26"/><circle class="aw1" cx="178.5" cy="58" r="18.5"/>
+            <rect class="aw2" x="197" y="32" width="37" height="26"/><circle class="aw2" cx="215.5" cy="58" r="18.5"/>
+            <rect class="aw1" x="234" y="32" width="37" height="26"/><circle class="aw1" cx="252.5" cy="58" r="18.5"/>
+            <rect class="aw2" x="271" y="32" width="37" height="26"/><circle class="aw2" cx="289.5" cy="58" r="18.5"/>
+          </g>
+          <rect class="awtop" x="8" y="22" width="304" height="14" rx="7"/>
+          <line class="rope" x1="150" y1="76" x2="150" y2="96"/><line class="rope" x1="170" y1="76" x2="170" y2="96"/>
+          <rect class="lamp" x="140" y="94" width="40" height="22" rx="8"/>
+          <circle class="date" cx="72" cy="124" r="6"/><circle class="date" cx="84" cy="122" r="6"/><circle class="date" cx="96" cy="124" r="6"/><circle class="date" cx="78" cy="114" r="6"/><circle class="date" cx="90" cy="114" r="6"/>
+          <circle class="orange" cx="222" cy="122" r="8"/><circle class="orange" cx="240" cy="122" r="8"/><circle class="lime" cx="231" cy="110" r="8"/><circle class="orange" cx="256" cy="122" r="7"/>
+          <rect class="ctop" x="40" y="128" width="240" height="12" rx="6"/>
+          <rect class="counter" x="46" y="138" width="228" height="50" rx="8"/>
+          <circle class="plaque" cx="160" cy="163" r="17"/>
+          <text class="ptext" x="160" y="163" dy=".35em" text-anchor="middle">٪</text>
+        </svg>
+        <span class="camel">🐪</span>
+        <span class="say-hero">يلا نتسوّق!</span>
+        <span class="coin" style="top:6%;right:5%">٪</span>
+        <span class="coin" style="top:2%;left:16%;animation-delay:.6s;width:28px;height:28px;font-size:15px">٪</span>
+      </div>
+      <h1 class="title">تعلّم <span class="hl">المعادلة المئوية</span><br>وأنت تتسوّق! 🛍️</h1>
+      <p class="lead">كلّم البيّاعين، احسب الخصومات والأرباح، واجمع النجوم. خطوة خطوة وبدون تعقيد.</p>
+      <button class="cta" data-go="map" id="ctaBtn">يلا ندخل السوق 🚪</button>
+      <div class="tiles">
+        <button class="tile" data-go="sheet"><span class="ti">📜</span><b>الملخص</b><small>الدرس كله في صفحة وحدة</small></button>
+        <button class="tile" data-go="solver"><span class="ti">🧮</span><b>آلة الحل</b><small>حل أي مسألة خطوة بخطوة</small></button>
+        <button class="tile wide" data-cert id="certTile" hidden><span class="ti">🏅</span><span><b>شهادتي</b><br><small>شهادة تاجر النِّسَب</small></span></button>
+      </div>
+      <p class="foot">رياضيات ثاني متوسط • الفصل الرابع: النسبة المئوية<br>درس: المعادلة المئوية</p>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="screen" id="s-map" aria-label="خريطة السوق">
+    <header class="topbar">
+      <button class="back" data-back="home" aria-label="رجوع"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="tt"><b>خريطة السوق 🗺️</b><small>اختر محطة وابدأ السوالف</small></div>
+      <span class="coins" data-total>⭐ ٠</span>
+    </header>
+    <div class="scroll"><div class="mapwrap"><div class="prog" id="mapProg"></div><ol class="street" id="street"></ol></div></div>
+  </section>
+
+  <!-- CHAT -->
+  <section class="screen" id="s-chat" aria-label="المحادثة">
+    <header class="topbar">
+      <button class="back" data-back="map" aria-label="رجوع للخريطة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      <span class="hav" id="cIcon"></span>
+      <div class="tt"><b id="cTitle"></b><small id="cCast"></small></div>
+      <span class="coins" id="cPts">⭐ ٠</span>
+      <div class="pbar"><i id="cProg"></i></div>
+    </header>
+    <div class="scroll" id="chatScroll"><div class="chat" id="chatLog" aria-live="polite"></div></div>
+    <div class="dock" id="dock"></div>
+  </section>
+
+  <!-- SHEET -->
+  <section class="screen" id="s-sheet" aria-label="الملخص">
+    <header class="topbar">
+      <button class="back" data-back="home" aria-label="رجوع"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="tt"><b>الملخص 📜</b><small>كل الدرس في صفحة وحدة</small></div>
+    </header>
+    <div class="scroll"><div class="page" id="sheetBody"></div></div>
+  </section>
+
+  <!-- SOLVER -->
+  <section class="screen" id="s-solver" aria-label="آلة الحل">
+    <header class="topbar">
+      <button class="back" data-back="home" aria-label="رجوع"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="tt"><b>آلة الحل 🧮</b><small>اكتب الأرقام ويطلع لك الحل بالخطوات</small></div>
+    </header>
+    <div class="scroll"><div class="page" id="solverBody"></div></div>
+  </section>
+</div>
+
+<div class="modal" id="cert" hidden role="dialog" aria-modal="true" aria-label="الشهادة">
+  <div class="mbox">
+    <div class="mtop"><b>شهادتك 🏅</b><button class="icon-btn" data-close aria-label="إغلاق">✕</button></div>
+    <div class="certificate">
+      <div class="medal">🏅</div>
+      <h2>شهادة تاجر النِّسَب</h2>
+      <p>يشهد سوق النِّسَب بأن</p>
+      <div class="cname" id="certNameOut">تاجر النِّسَب</div>
+      <p>أتقن المعادلة المئوية، وحسب الخصومات والأرباح والخسائر باحتراف 👏</p>
+      <div class="ceq"><span>ج</span> = <span>ن</span> × <span>ك</span></div>
+      <div class="cmeta"><span>⭐ <span id="certStars">٠</span> نجمة</span><span id="certDate"></span><span>التوقيع: حسّوب 🐪</span></div>
+    </div>
+    <label class="namefield">اكتب اسمك عشان يطلع في الشهادة
+      <input id="certName" maxlength="28" autocomplete="off" enterkeyhint="done" placeholder="اسمك هنا…">
+    </label>
+    <p class="mnote">📸 صوّر الشاشة واحتفظ بشهادتك أو أرسلها لمعلمك!</p>
+  </div>
+</div>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+<noscript><p style="padding:20px;text-align:center">الموقع يحتاج تفعيل JavaScript في المتصفح.</p></noscript>
+
+<script>
+(function () {
+'use strict';
+
+/* =========================================================
+   أدوات عامة
+   ========================================================= */
+var $ = function (s, el) { return (el || document).querySelector(s); };
+var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
+var AR = '٠١٢٣٤٥٦٧٨٩';
+// يحوّل الأرقام الإنجليزية إلى عربية، والفاصلة العشرية إلى ٫ ، و% إلى ٪
+function ar(s) {
+  return String(s).replace(/(\d)\.(?=\d)/g, '$1٫').replace(/\d/g, function (d) { return AR[+d]; }).replace(/%/g, '٪');
+}
+function round(x, d) { var m = Math.pow(10, d == null ? 2 : d); return Math.round((x + (x >= 0 ? 1e-9 : -1e-9)) * m) / m; }
+function fmt(x, d) { return String(round(x, d)); }
+function F(x, d) { return ar(fmt(x, d)); }
+function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+function toWestern(s) {
+  return String(s)
+    .replace(/[٠-٩]/g, function (d) { return String(d.charCodeAt(0) - 1632); })
+    .replace(/[۰-۹]/g, function (d) { return String(d.charCodeAt(0) - 1776); })
+    .replace(/[٫,،]/g, '.').replace(/[^0-9.]/g, '');
+}
+function parseNum(s) { var t = toWestern(s); if (!t || t === '.') return NaN; return parseFloat(t); }
+// نص غني: **عريض** ، [p:جزء] [r:نسبة] [w:كل] (الحرف الكبير = مجهول)
+function rich(t) {
+  return ar(t)
+    .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
+    .replace(/\[([prwPRW]):([^\]]+)\]/g, function (m, k, v) {
+      return '<span class="q q-' + k.toLowerCase() + (k !== k.toLowerCase() ? ' unk' : '') + '">' + v + '</span>';
+    })
+    .replace(/\n/g, '<br>');
+}
+function eq(s, cls) { return '<div class="eq ' + (cls || '') + '">' + rich(s) + '</div>'; }
+function unitTxt(v, u) { return u === '%' ? v + '٪' : (u ? v + ' ' + u : v); }
+function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- حفظ التقدّم ---------- */
+var KEY = 'souq-nesab-v1';
+var ST = { best: {}, stars: {}, name: '', mute: false };
+try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved) { for (var k in saved) ST[k] = saved[k]; } } catch (e) {}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch (e) {} }
+function total() { var s = 0; for (var k in ST.best) s += ST.best[k] || 0; return s; }
+
+/* ---------- أصوات خفيفة ---------- */
+var actx = null;
+function tone(freqs, dur, type, vol) {
+  if (ST.mute) return;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    if (actx.state === 'suspended') actx.resume();
+    var t = actx.currentTime;
+    freqs.forEach(function (f, i) {
+      var o = actx.createOscillator(), g = actx.createGain();
+      o.type = type || 'sine'; o.frequency.value = f;
+      var s = t + i * dur;
+      g.gain.setValueAtTime(0.0001, s);
+      g.gain.exponentialRampToValueAtTime(vol || 0.08, s + 0.015);
+      g.gain.exponentialRampToValueAtTime(0.0001, s + dur);
+      o.connect(g); g.connect(actx.destination);
+      o.start(s); o.stop(s + dur + 0.03);
+    });
+  } catch (e) {}
+}
+var sfx = {
+  ok: function () { tone([660, 990], 0.11, 'triangle', 0.09); },
+  bad: function () { tone([240, 190], 0.13, 'square', 0.035); },
+  win: function () { tone([523, 659, 784, 1047], 0.12, 'triangle', 0.09); }
+};
+function buzz() { try { if (navigator.vibrate) navigator.vibrate(35); } catch (e) {} }
+
+/* =========================================================
+   الشخصيات
+   ========================================================= */
+var PEOPLE = {
+  me: { name: 'أنت' },
+  guide: { name: 'حسّوب (مرشدك)', emoji: '🐪', bg: '#FFE8A3' },
+  saad: { name: 'العم سعد', emoji: '👳', bg: '#FFD8A8' },
+  abukhalid: { name: 'أبو خالد', emoji: '🧔', bg: '#C5F6FA' },
+  rayan: { name: 'الكابتن ريّان', emoji: '🧢', bg: '#D3F9D8' },
+  umfaisal: { name: 'أم فيصل', emoji: '🧕', bg: '#E5DBFF' },
+  hind: { name: 'هند', emoji: '👩', bg: '#FFDEEB' },
+  abunasser: { name: 'أبو ناصر', emoji: '👨', bg: '#FFE3BF' },
+  yasser: { name: 'ياسر', emoji: '🧒', bg: '#FFF3BF' },
+  host: { name: 'مقدّم المسابقة', emoji: '🎤', bg: '#FFE8A3' }
+};
+
+/* ---------- بُناة الخطوات ---------- */
+function say(who, text) { return { t: 'say', who: who, text: text }; }
+function me(text) { return { t: 'say', who: 'me', text: text }; }
+function tip(text) { return { t: 'say', who: 'guide', text: text }; }
+function card(html) { return { t: 'card', html: html }; }
+function choose(o) { o.t = 'choose'; return o; }
+function num(o) { o.t = 'num'; return o; }
+
+/* ---------- رسومات داخل المحادثة ---------- */
+function grid100(n) {
+  var s = '';
+  for (var i = 0; i < 100; i++) s += '<i' + (i < n ? ' class="on" style="animation-delay:' + (i * 14) + 'ms"' : '') + '></i>';
+  return '<div class="g100" aria-hidden="true">' + s + '</div>';
+}
+// نموذج الأشرطة: الكل (١٠٠٪) والجزء (النسبة)
+function bar(o) {
+  var pct = o.pct, scale = Math.max(100, pct);
+  var names = o.names || ['الكل', 'الجزء'];
+  var ww = 100 / scale * 100, pw = Math.max(1.5, pct / scale * 100);
+  var val = function (k, v) { return o.unk === k ? '<span class="unk">؟</span>' : F(v); };
+  return '<div class="bars">' +
+    '<div class="brow w"><div class="bname">' + names[0] + '<small>' + ar('100%') + '</small></div><div class="btrack"><i style="width:' + ww + '%"></i></div><div class="bval">' + val('w', o.whole) + '</div></div>' +
+    '<div class="brow p"><div class="bname">' + names[1] + '<small>' + (o.unk === 'r' ? '<span class="unk">؟٪</span>' : ar(fmt(pct, 1) + '%')) + '</small></div><div class="btrack"><i style="width:' + pw + '%;animation-delay:.25s"></i></div><div class="bval">' + val('p', o.part) + '</div></div>' +
+    '</div>';
+}
+function ruleCard() {
+  return '<div class="rule"><div class="rule-t">القانون السحري 🪄</div>' +
+    eq('[p:الجزء] = [r:النسبة] × [w:الكل]', 'big') +
+    eq('[p:ج] = [r:ن] × [w:ك]') +
+    '<div class="legend">' + rich('[p:ج = الجزء] [r:ن = النسبة كعدد عشري] [w:ك = الكل]') + '</div></div>';
+}
+function convRows(list) {
+  return '<div class="conv">' + list.map(function (p) {
+    return '<div class="crow">' + rich('[r:' + p + '%]') + '<span class="arr">←</span><span>' + F(p / 100, 4) + '</span></div>';
+  }).join('') + '</div>';
+}
+var FACT = [['ج', 8358, 4967], ['ب', 5391, 3409], ['أ', 4149, 2667]];
+var bestFact = FACT.reduce(function (a, b) { return b[2] / b[1] > a[2] / a[1] ? b : a; })[0];
+function factoryChart() {
+  return '<div class="ctitle">صناعة البلاط 🧱 (بالمتر المربع)</div><div class="fc">' +
+    FACT.map(function (r) {
+      return '<div class="fc-row"><b>المصنع ' + r[0] + '</b><div class="fc-b">' +
+        '<div class="fc-l"><i class="prod" style="width:' + (r[1] / 125) + '%"></i><span>' + ar(r[1]) + '</span></div>' +
+        '<div class="fc-l"><i class="sold" style="width:' + (r[2] / 125) + '%;animation-delay:.2s"></i><span>' + ar(r[2]) + '</span></div></div></div>';
+    }).join('') +
+    '</div><div class="fc-leg"><span><i class="prod"></i>الكمية المنتجة</span><span><i class="sold"></i>الكمية المبيعة</span></div>';
+}
+function factoryAnswer() {
+  return '<div class="ctitle">نحسب لكل مصنع: المبيع ÷ المنتج</div>' +
+    FACT.map(function (r) { return eq('المصنع ' + r[0] + ': ' + r[2] + ' ÷ ' + r[1] + ' ≈ ' + fmt(r[2] / r[1] * 100, 1) + '%', 'step'); }).join('') +
+    '<p class="note">' + rich('المصنع ' + bestFact + ' باع **أقل كمية**، بس باع **أكبر نسبة** من إنتاجه! 💡 النسبة غير الكمية.') + '</p>';
+}
+
+/* =========================================================
+   المحطات (السيناريوهات) — كل الأجوبة محسوبة بالكود
+   ========================================================= */
+var a1 = 0.25 * 200;
+var a2 = 0.85 * 920, a2b = 0.24 * 84;
+var a3 = 62 / 186 * 100, a3b = 25 / 625 * 100, a3c = 6 / 750 * 100;
+var a4 = 1380 / 0.92, a4b = 680 / 0.34, a4c = 30 / 0.15;
+var a5 = 1.07 * 1225, a5b = 0.95 * 2500, a5c = 1.075 * 260;
+var a6 = 1.2 * 100, a6b = 0.8 * a6, a6c = 100 * 0.95 * 1.05;
+
+var SCENES = [
+{
+  id: 'tamr', title: 'دكان التمر', icon: '🌴', color: '#FFD8A8', who: 'saad', cast: 'العم سعد + حسّوب',
+  goal: 'تعرف وش يعني ٪ ، وتتعلم القانون السحري',
+  steps: [
+    say('saad', 'يا هلا والله ومرحبا! حيّاك الله في دكاني 🌴'),
+    say('saad', 'شف هالعلبة: فيها **100 حبة تمر** بالضبط. لو عطيتك منها **25 حبة**…'),
+    say('saad', 'كم عطيتك من العلبة **بالنسبة المئوية**؟ 🤔'),
+    choose({ opts: [['25%', 1], ['75%'], ['100%']], hint: 'النسبة المئوية معناها: كم من كل 100؟ وأنت أخذت 25 من 100…', right: 'صح عليك! 25 من 100 يعني **25%** 👏' }),
+    card(function () { return '<div class="ctitle">' + ar('25% = 25 من كل 100') + '</div>' + grid100(25) + eq('25% = 25 ÷ 100 = ' + fmt(25 / 100)); }),
+    tip('شفت؟ كلمة «بالمئة» معناها **من كل 100** 💡'),
+    tip('وعشان نحسب فيها، نحوّل النسبة لعدد عشري: **نقسمها على 100**'),
+    card(function () { return '<div class="ctitle">نحوّلها لعدد عشري (÷ ' + ar(100) + ')</div>' + convRows([85, 7, 150]); }),
+    say('saad', 'طيب خلني أختبرك 😏 كم تصير **40%** كعدد عشري؟'),
+    choose({ opts: [[fmt(40 / 100), 1], ['4'], ['0.04']], hint: 'اقسم 40 على 100…', right: 'كفو! 40% = 0.40 = **' + fmt(40 / 100) + '**' }),
+    say('saad', 'الحين عندي علبة كبيرة فيها **200 حبة**، وتبي **25%** منها. كم حبة أعطيك؟'),
+    tip('هنا يجي **القانون السحري** للمعادلة المئوية 🪄'),
+    card(ruleCard),
+    tip('[w:الكل] = العلبة كاملة (200)\n[r:النسبة] = 25% = 0.25\n[p:الجزء] = الحبات اللي بتاخذها (هذا الناقص)'),
+    card(function () { return eq('[P:ج] = [r:0.25] × [w:200]', 'big'); }),
+    num({ q: 'كم حبة بتاخذ؟', ans: a1, unit: 'حبة', hint: '0.25 يعني ربع. ربع الـ 200 كم؟', steps: ['ج = 0.25 × 200', 'ج = ' + fmt(a1)], right: 'أبشر! **' + fmt(a1) + ' حبة** سكري لعيونك 😄' }),
+    card(function () { return bar({ whole: 200, part: a1, pct: 25 }); }),
+    tip('خلاصة المحطة 📌\nأي سؤال نسبة فيه 3 أشياء: [p:الجزء] و[r:النسبة] و[w:الكل]\nدايمًا واحد منها ناقص، وشغلتك تطلعه! 💪')
+  ]
+},
+{
+  id: 'jawal', title: 'محل الإلكترونيات', icon: '🎧', color: '#C5F6FA', who: 'abukhalid', cast: 'أبو خالد + حسّوب',
+  goal: 'تطلع [p:الجزء] لما تعرف النسبة والكل',
+  steps: [
+    say('abukhalid', 'هلا والله! نوّرت المحل 📱'),
+    say('abukhalid', 'عندنا عرض اليوم على السماعات 🎧 سعرها **920 ريال**، بس تدفع **85%** من سعرها فقط!'),
+    me('طيب كم بدفع بالضبط؟'),
+    tip('قبل لا نحسب، نرتّب المعطيات 🧐\nوش هو [w:الكل] هنا؟'),
+    choose({ who: 'guide', opts: [['920 ريال (السعر كامل)', 1], ['85%'], ['المبلغ اللي بدفعه']], hint: '[w:الكل] هو الشيء كامل قبل لا ناخذ منه. كم السعر الكامل؟', right: 'تمام 👌 و[r:النسبة] = 85% = 0.85' }),
+    tip('طيب، وش الناقص اللي نبي نطلعه؟'),
+    choose({ who: 'guide', opts: [['[p:الجزء] (المبلغ اللي بدفعه)', 1], ['[r:النسبة]'], ['[w:الكل]']], hint: 'النسبة معروفة (85%) والكل معروف (920)… باقي واحد!', right: 'بالضبط! نطلع [p:الجزء] 🎯' }),
+    card(function () { return eq('[P:ج] = [r:0.85] × [w:920]', 'big') + bar({ whole: 920, part: a2, pct: 85, unk: 'p' }); }),
+    num({ q: 'كم بتدفع؟', ans: a2, unit: 'ريال', hint: 'اضرب 920 × 0.85\n(أو: 920 × 85 = ' + (920 * 85) + ' وبعدين اقسم على 100)', steps: ['ج = 0.85 × 920', 'ج = ' + fmt(a2)], right: 'بالضبط! **' + fmt(a2) + ' ريال** والسماعات لك 🎉' }),
+    say('abukhalid', 'وعندي شاحن سريع بـ **84 ريال** عليه خصم **24%** 🔌'),
+    say('abukhalid', 'كم ريال ينقص من سعره؟ (يعني كم قيمة الخصم؟)'),
+    card(function () { return eq('[P:ج] = [r:0.24] × [w:84]', 'big'); }),
+    num({ q: 'قيمة الخصم', ans: a2b, unit: 'ريال', hint: '84 × 24 = ' + (84 * 24) + '\nوبعدين اقسم على 100', steps: ['ج = 0.24 × 84', 'ج = ' + fmt(a2b)], right: 'صح! الخصم **' + fmt(a2b) + ' ريال** 👌' }),
+    tip('القاعدة: تبي [p:الجزء]؟ ← **اضرب** [r:النسبة] × [w:الكل] ✖️'),
+    tip('وحيلة للحساب الذهني ⚡\n10% ← اقسم على 10\n50% ← النص • 25% ← الربع'),
+    say('abukhalid', 'سؤال سريع: كم **20%** من **200**؟'),
+    choose({ opts: [[fmt(0.2 * 200), 1], ['20'], ['4']], hint: '10% من 200 = 20، و20% ضعفها', right: 'سريع! ⚡' }),
+    say('abukhalid', 'وآخر واحد: كم **75%** من **84**؟'),
+    choose({ opts: [[fmt(0.75 * 84), 1], ['21'], ['75']], hint: '75% = ثلاثة أرباع. ربع الـ 84 = ' + (84 / 4) + '، وثلاثة أرباع = ' + (84 / 4) + ' × 3', right: 'وحش! 💪' })
+  ]
+},
+{
+  id: 'malab', title: 'ملعب الحي', icon: '⚽', color: '#D3F9D8', who: 'rayan', cast: 'الكابتن ريّان + حسّوب',
+  goal: 'تطلع [r:النسبة] لما تعرف الجزء والكل',
+  steps: [
+    say('rayan', 'يا هلا بالبطل! ⚽ أنا الكابتن ريّان، مدرب فريق الحي'),
+    say('rayan', 'هالموسم سدد فريقنا **186** كورة على المرمى، ودخل منها **62** هدف 🥅'),
+    say('rayan', 'أبي أعرف: كم **نسبة** الأهداف من التسديدات؟'),
+    tip('هالمرة الناقص هو [r:النسبة]! عندنا [p:الجزء] و[w:الكل]\nبس انتبه: أيهم [w:الكل]؟'),
+    choose({ who: 'guide', opts: [['186 (كل التسديدات)', 1], ['62 (الأهداف)']], hint: '[w:الكل] هو المجموع الكامل. الأهداف جزء من التسديدات…', right: 'صح! والأهداف (62) هي [p:الجزء]' }),
+    card(function () { return eq('[p:62] = [R:ن] × [w:186]', 'big') + bar({ whole: 186, part: 62, pct: a3, unk: 'r' }); }),
+    tip('عشان نطلع [r:ن] نقسم الطرفين على 186:\n[r:ن] = [p:الجزء] ÷ [w:الكل]'),
+    card(function () { return eq('[R:ن] = [p:62] ÷ [w:186] ≈ ' + fmt(62 / 186, 3)); }),
+    tip('وبعدها نضرب في 100 عشان تصير نسبة مئوية 💯'),
+    num({ q: 'كم النسبة؟ (لأقرب جزء من عشرة)', ans: a3, tol: 0.05, d: 1, unit: '%', hint: fmt(62 / 186, 3) + ' × 100 = ؟', steps: ['62 = ن × 186', 'ن = 62 ÷ 186', 'ن ≈ ' + fmt(62 / 186, 3), 'النسبة ≈ ' + fmt(a3, 1) + '%'], right: 'كفو! **' + fmt(a3, 1) + '%** يعني تقريبًا هدف من كل 3 تسديدات 😎' }),
+    say('rayan', 'في النهائي حضر **625** مشجع، منهم **25** من مدرستك 🎉 كم نسبتهم؟'),
+    num({ q: 'نسبة مشجعين مدرستك', ans: a3b, unit: '%', hint: 'ن = 25 ÷ 625\nوبعدين اضرب في 100', steps: ['25 = ن × 625', 'ن = 25 ÷ 625', 'ن = ' + fmt(25 / 625, 3), 'النسبة = ' + fmt(a3b) + '%'], right: 'صح! **' + fmt(a3b) + '%** بس… نبي تشجيع أكثر 📣' }),
+    say('rayan', 'آخر واحد وفيه فخ 😏 بعنا **750** تذكرة، منها **6** تذاكر VIP. كم نسبة تذاكر VIP؟'),
+    choose({ opts: [[fmt(a3c) + '%', 1], ['8%'], ['80%']], hint: '6 ÷ 750 = ' + fmt(6 / 750, 3) + '\nاضربها في 100…', right: 'صح! **' + fmt(a3c) + '%** — يعني النسبة ممكن تكون أقل من 1% 😮' }),
+    tip('القاعدة: تبي [r:النسبة]؟ ← **اقسم** [p:الجزء] ÷ [w:الكل]، وبعدين × 100 ➗')
+  ]
+},
+{
+  id: 'ajhiza', title: 'معرض الأجهزة', icon: '🧺', color: '#E5DBFF', who: 'umfaisal', cast: 'أم فيصل + حسّوب',
+  goal: 'تطلع [w:الكل] (السعر الأصلي)',
+  steps: [
+    say('umfaisal', 'أهلين وسهلين! عندنا تخفيضات نهاية الموسم 🏷️'),
+    say('umfaisal', 'هالغسالة عليها خصم **8%**، وصار سعرها **1380 ريال** بس!'),
+    me('حلو! بس كم كان سعرها قبل الخصم؟ أبي أعرف كم وفّرت'),
+    say('umfaisal', 'احسبها أنت يا ذكي 😉'),
+    tip('انتبه! 1380 **مو** السعر الأصلي، هو السعر **بعد** الخصم ⚠️'),
+    tip('السعر الأصلي = 100%. إذا شلنا منه 8%، كم نسبة اللي دفعته؟'),
+    choose({ who: 'guide', opts: [[(100 - 8) + '%', 1], ['8%'], ['108%']], hint: '100% − 8% = ؟', right: 'صح! دفعت **' + (100 - 8) + '%** من السعر الأصلي' }),
+    tip('يعني: 1380 هو [p:الجزء]، و[r:النسبة] = 92% = 0.92\nو[w:الكل] (السعر الأصلي) هو الناقص'),
+    card(function () { return eq('[p:1380] = [r:0.92] × [W:ك]', 'big') + bar({ whole: a4, part: 1380, pct: 92, unk: 'w' }); }),
+    tip('عشان نطلع [w:ك] نقسم:\n[w:الكل] = [p:الجزء] ÷ [r:النسبة]'),
+    num({ q: 'السعر قبل الخصم', ans: a4, unit: 'ريال', hint: 'ك = 1380 ÷ 0.92\n(نفس الشي: 138000 ÷ 92)', steps: ['1380 = 0.92 × ك', 'ك = 1380 ÷ 0.92', 'ك = ' + fmt(a4)], right: 'عليك نور! كانت بـ **' + fmt(a4) + ' ريال** ووفّرت ' + fmt(a4 - 1380) + ' ريال 💸' }),
+    say('umfaisal', 'وفيه زبون دفع **عربون 680 ريال** لمكيف ❄️ والعربون يساوي **34%** من سعر المكيف'),
+    say('umfaisal', 'كم سعر المكيف كامل؟'),
+    card(function () { return eq('[p:680] = [r:0.34] × [W:ك]', 'big'); }),
+    num({ q: 'سعر المكيف', ans: a4b, unit: 'ريال', hint: 'ك = 680 ÷ 0.34\n(نفس الشي: 68000 ÷ 34)', steps: ['680 = 0.34 × ك', 'ك = 680 ÷ 0.34', 'ك = ' + fmt(a4b)], right: 'مضبوط! المكيف بـ **' + fmt(a4b) + ' ريال** ❄️' }),
+    say('umfaisal', 'وأخيرًا: مكواة عليها خصم **30 ريال**، وهالخصم يساوي **15%** من سعرها. كم سعرها؟'),
+    choose({ opts: [[fmt(a4c) + ' ريال', 1], [fmt(30 * 1.5) + ' ريال'], [fmt(30 * 0.15) + ' ريال']], hint: 'ك = 30 ÷ 0.15', right: 'ممتاز! 👌' }),
+    tip('القاعدة: تبي [w:الكل]؟ ← **اقسم** [p:الجزء] ÷ [r:النسبة] ➗')
+  ]
+},
+{
+  id: 'tujjar', title: 'سوق التجّار', icon: '💰', color: '#FFDEEB', who: 'hind', cast: 'هند + أبو ناصر + حسّوب',
+  goal: 'تحسب سعر البيع مع الربح والخسارة',
+  steps: [
+    say('hind', 'هلا فيك! أنا هند، عندي محل إكسسوارات 💍'),
+    say('hind', 'اشتريت عقد بـ **1225 ريال**، وأبي أبيعه **بربح 7%**. ساعدني أحدد سعر البيع!'),
+    tip('**الربح** يعني نزيد على الثمن 📈\n100% + 7% = **107%** من الثمن'),
+    tip('طيب، 107% كعدد عشري كم؟'),
+    choose({ who: 'guide', opts: [[fmt(107 / 100), 1], ['10.7'], ['0.107']], hint: 'اقسم 107 على 100', right: 'صح! **' + fmt(107 / 100) + '**' }),
+    card(function () { return eq('سعر البيع = [r:1.07] × [w:1225]') + bar({ whole: 1225, part: a5, pct: 107, unk: 'p', names: ['الثمن', 'البيع'] }); }),
+    num({ q: 'سعر البيع', ans: a5, unit: 'ريال', hint: '1225 × 1.07\nأو: 7% من 1225 = ' + fmt(0.07 * 1225) + ' ونجمعها على 1225', steps: ['سعر البيع = 1.07 × 1225', 'سعر البيع = ' + fmt(a5)], right: 'ممتاز! بكتب على البطاقة **' + fmt(a5) + ' ريال** 🏷️' }),
+    say('abunasser', 'وأنا أبو ناصر من معرض الأثاث 🛋️ حظي أقل منها شوي 😅'),
+    say('abunasser', 'اشتريت طقم كنب بـ **2500 ريال**، والحال ما مشى، فبعته **بخسارة 5%**. بكم بعته؟'),
+    tip('**الخسارة** يعني ننقص من الثمن 📉\n100% − 5% = 95% = 0.95'),
+    card(function () { return eq('سعر البيع = [r:0.95] × [w:2500]') + bar({ whole: 2500, part: a5b, pct: 95, unk: 'p', names: ['الثمن', 'البيع'] }); }),
+    num({ q: 'سعر البيع', who: 'abunasser', ans: a5b, unit: 'ريال', hint: '2500 × 0.95\nأو: 5% من 2500 = ' + fmt(0.05 * 2500) + ' ونطرحها', steps: ['سعر البيع = 0.95 × 2500', 'سعر البيع = ' + fmt(a5b)], right: 'إيه والله، بعته بـ **' + fmt(a5b) + ' ريال** وخسرت ' + fmt(2500 - a5b) + ' ريال 😓' }),
+    say('hind', 'سؤال أخير مني: اشتريت بشت بـ **260 ريال**، وأبي أبيعه بربح **7.5%**. بكم أبيعه؟'),
+    choose({ opts: [[fmt(a5c) + ' ريال', 1], [fmt(260 + 7.5) + ' ريال'], [fmt(260 * 0.075) + ' ريال']], hint: 'سعر البيع = 1.075 × 260', right: 'صح! وهذا سعر البشت الجديد 👌' }),
+    tip('الخلاصة 📌\nربح ← اضرب في (1 + النسبة)\nخسارة أو خصم ← اضرب في (1 − النسبة)')
+  ]
+},
+{
+  id: 'fakh', title: 'فخ التخفيضات', icon: '🧠', color: '#FFF3BF', who: 'yasser', cast: 'ياسر + حسّوب',
+  goal: 'تكشف فخ «زاد ثم نقص» وتتعلم حيلة سحرية',
+  steps: [
+    say('yasser', 'يا صاحبي تعال! صار لي موقف غريب 🤯'),
+    say('yasser', 'جزمة رياضية سعرها **100 ريال**. فجأة **زاد** سعرها 20%، وبعد شهر نزل عليها **خصم** 20%'),
+    say('yasser', 'يعني رجع سعرها 100 صح؟ وش رايك؟ 🤔'),
+    choose({ q: 'توقّع… وبعدين نتأكد بالحساب', opts: [['إيه، رجع 100'], ['لا، صار أقل من 100'], ['لا، صار أكثر من 100']] }),
+    tip('خلنا نتأكد بالحساب خطوة خطوة 🔍\nالخطوة 1: زيادة 20% ← نضرب في **1.2**'),
+    num({ q: 'السعر بعد الزيادة', ans: a6, unit: 'ريال', hint: '100 × 1.2', steps: ['100 × 1.2 = ' + fmt(a6)], right: 'تمام، صار **' + fmt(a6) + ' ريال**' }),
+    tip('الخطوة 2: خصم 20% ← نضرب في **0.8**\nبس انتبه: نضرب في السعر **الجديد** (' + fmt(a6) + ') مو 100!'),
+    num({ q: 'السعر بعد الخصم', ans: a6b, unit: 'ريال', hint: fmt(a6) + ' × 0.8\nأو: 20% من ' + fmt(a6) + ' = ' + fmt(0.2 * a6) + ' ونطرحها', steps: [fmt(a6) + ' × 0.8 = ' + fmt(a6b)], right: '**' + fmt(a6b) + ' ريال**!! يعني صار أقل من 100 😮' }),
+    tip('السر 🔑: الخصم انحسب من رقم **أكبر** (' + fmt(a6) + ')، فنقص أكثر من اللي زاد.\nلو السعر الأصلي س:\n1.2 × 0.8 × س = **' + fmt(1.2 * 0.8) + ' س** (أقل من س)'),
+    say('yasser', 'طيب والعكس؟ سلعة بـ **100**، نزل عليها خصم 5% وبعدين زاد سعرها 5%. كم السعر النهائي؟'),
+    choose({ opts: [[fmt(a6c), 1], ['100'], ['100.25']], hint: '100 × 0.95 = 95\nوبعدين 95 × 1.05 = ؟', right: 'صح! وبرضو ما رجع 100 👀' }),
+    tip('والحين حيلة سحرية 🪄\n[r:أ%] من [w:ب] = [r:ب%] من [w:أ]\nمثلًا: 8% من 50 = 50% من 8 = ' + fmt(0.08 * 50)),
+    say('yasser', 'واو! جرّبها: كم **18%** من **50**؟'),
+    choose({ opts: [[fmt(0.18 * 50), 1], ['18'], ['36']], hint: 'اقلبها: 50% من 18 = نص الـ 18', right: 'سحر! 🪄 قلبتها وصارت سهلة' })
+  ]
+},
+{
+  id: 'final', title: 'مسابقة السوق الكبرى', icon: '🏆', color: '#FFE8A3', who: 'host', cast: 'مقدّم المسابقة + حسّوب',
+  goal: '8 أسئلة منوّعة وتطلع بشهادة 🏅',
+  steps: [
+    say('host', 'مساء الخير يا أهل السوق! 🎤 حياكم في **مسابقة السوق الكبرى**'),
+    say('host', '8 أسئلة، وكل جواب صح من أول محاولة = 10 ⭐\nيلا نبدأ! 🥁'),
+    say('host', '**سؤال 1:** سعيد ياخذ عمولة **7%** على مبيعاته. إذا باع في الشهر بـ **129900 ريال**، كم عمولته؟'),
+    choose({ opts: [[fmt(0.07 * 129900) + ' ريال', 1], ['909 ريال'], ['9293 ريال'], ['90930 ريال']], hint: 'العمولة = 0.07 × 129900' }),
+    say('host', '**سؤال 2:** شركة باعت **1400 طن** سماد في عام 1437هـ، وفي 1438هـ باعت أكثر بـ **10%**. كم طن باعت في 1438هـ؟'),
+    choose({ opts: [[fmt(1400 * 1.1) + ' طن', 1], ['140 طن'], ['1260 طن'], ['1410 طن']], hint: 'زيادة 10% ← اضرب في 1.1' }),
+    say('host', '**سؤال 3:** سيارة تمشي **18 كم** بكل لتر بنزين ⛽ ولو الكفرات مو منفوخة زين، تمشي مسافة أقل بـ **15%**. كم كيلو تمشي باللتر؟'),
+    num({ q: 'المسافة باللتر', ans: 0.85 * 18, unit: 'كم', hint: 'أقل بـ 15% ← اضرب في 0.85', steps: ['المسافة = 0.85 × 18', 'المسافة = ' + fmt(0.85 * 18)] }),
+    say('host', '**سؤال 4:** من بين **150** زبون دخلوا دكان التمر، **45** اشتروا سكري. كم نسبتهم؟'),
+    choose({ opts: [[fmt(45 / 150 * 100) + '%', 1], ['45%'], ['15%']], hint: 'ن = 45 ÷ 150، وبعدين × 100' }),
+    say('host', '**سؤال 5:** رسوم التوصيل **9 ريال**، وهي تساوي **3%** من قيمة الطلب. كم قيمة الطلب؟'),
+    num({ q: 'قيمة الطلب', ans: 9 / 0.03, unit: 'ريال', hint: 'ك = 9 ÷ 0.03', steps: ['9 = 0.03 × ك', 'ك = 9 ÷ 0.03', 'ك = ' + fmt(9 / 0.03)] }),
+    say('host', '**سؤال 6:** هذي مبيعات 3 مصانع بلاط 🧱 أي مصنع باع **أكبر نسبة** من إنتاجه؟'),
+    card(factoryChart),
+    choose({ opts: FACT.map(function (r) { return ['المصنع ' + r[0], r[0] === bestFact ? 1 : 0]; }), hint: 'لا تنخدع بالرقم الأكبر! 😉 احسب لكل مصنع: المبيع ÷ المنتج' }),
+    card(factoryAnswer),
+    say('host', '**سؤال 7:** جوال سعره **2000 ريال**، زاد سعره 10% وبعدين نقص 10%. كم صار سعره؟'),
+    choose({ opts: [[fmt(2000 * 1.1 * 0.9) + ' ريال', 1], ['2000 ريال'], ['2020 ريال']], hint: '2000 × 1.1 = ' + fmt(2000 * 1.1) + '\nوبعدين ' + fmt(2000 * 1.1) + ' × 0.9 = ؟' }),
+    say('host', '**سؤال 8 والأخير:** تاجر اشترى جهاز بـ **5300 ريال** وباعه بربح **40%**. بكم باعه؟'),
+    num({ q: 'سعر البيع', ans: 1.4 * 5300, unit: 'ريال', hint: 'ربح 40% ← اضرب في 1.4', steps: ['سعر البيع = 1.4 × 5300', 'سعر البيع = ' + fmt(1.4 * 5300)] }),
+    say('host', 'انتهت المسابقة! 🥁 خلني أشوف نتيجتك…')
+  ]
+}
+];
+
+function hasCorrect(st) { return st.opts.some(function (o) { return !!o[1]; }); }
+function isScored(st) { return st.t === 'num' || (st.t === 'choose' && hasCorrect(st)); }
+
+/* =========================================================
+   محرك المحادثة
+   ========================================================= */
+var log = $('#chatLog'), dock = $('#dock'), scroller = $('#chatScroll');
+var run = null, lastWho = null, keyHandler = null, skipper = null;
+var DBG = { fast: false, ask: null };
+window.__souq = DBG;
+
+function alive(tok) { return run && run.tok === tok; }
+function sleep(ms) {
+  if (DBG.fast) ms = 0;
+  return new Promise(function (res) {
+    var t = setTimeout(done, ms);
+    function done() { clearTimeout(t); if (skipper === done) skipper = null; res(); }
+    skipper = done;
+  });
+}
+scroller.addEventListener('click', function () { if (skipper) skipper(); });
+
+function scrollDown() {
+  requestAnimationFrame(function () {
+    try { scroller.scrollTo({ top: scroller.scrollHeight, behavior: reduceMotion ? 'auto' : 'smooth' }); }
+    catch (e) { scroller.scrollTop = scroller.scrollHeight; }
+  });
+}
+function avatar(who) { var p = PEOPLE[who]; return '<span class="av" style="background:' + p.bg + '">' + p.emoji + '</span>'; }
+
+function addMsg(who, html, isHTML) {
+  var el = document.createElement('div');
+  var cont = lastWho === who;
+  el.className = 'msg' + (who === 'me' ? ' me' : '') + (who === 'guide' ? ' guide' : '') + (cont ? ' cont' : '');
+  var body = isHTML ? html : rich(html);
+  el.innerHTML = (who === 'me' ? '' : avatar(who)) +
+    '<div class="bubble">' + (!cont && who !== 'me' ? '<span class="who">' + PEOPLE[who].name + '</span>' : '') + body + '</div>';
+  log.appendChild(el);
+  lastWho = who;
+  scrollDown();
+  return el;
+}
+function addTyping(who) {
+  var el = document.createElement('div');
+  el.className = 'msg' + (who === 'guide' ? ' guide' : '') + (lastWho === who ? ' cont' : '');
+  el.innerHTML = avatar(who) + '<div class="bubble"><span class="dots" aria-label="يكتب"><i></i><i></i><i></i></span></div>';
+  log.appendChild(el);
+  scrollDown();
+  return el;
+}
+
+function doSay(st, tok) {
+  if (st.who === 'me') {
+    return sleep(220).then(function () { if (!alive(tok)) return; addMsg('me', st.text); return sleep(260); });
+  }
+  var len = String(st.text).length;
+  var ty = addTyping(st.who);
+  return sleep(Math.min(480 + len * 20, 1500)).then(function () {
+    ty.remove();
+    if (!alive(tok)) return;
+    addMsg(st.who, st.text);
+    return sleep(320);
+  });
+}
+function doCard(st, tok) {
+  return sleep(260).then(function () {
+    if (!alive(tok)) return;
+    var el = document.createElement('div');
+    el.className = 'card';
+    el.innerHTML = typeof st.html === 'function' ? st.html() : st.html;
+    log.appendChild(el);
+    lastWho = null;
+    scrollDown();
+    return sleep(550);
+  });
+}
+var PRAISE = ['صح عليك! 👏', 'ممتاز! ✨', 'كفو! 💪', 'عليك نور! 🌟', 'بطل! 🏆', 'تمام التمام! 👌'];
+function praise() { return PRAISE[Math.floor(Math.random() * PRAISE.length)]; }
+
+function gain(pts) {
+  if (!pts || !run) return;
+  run.pts += pts;
+  var el = $('#cPts');
+  el.textContent = '⭐ ' + ar(run.pts);
+  el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
+  var f = document.createElement('div');
+  f.className = 'plus';
+  f.textContent = '+' + ar(pts) + ' ⭐';
+  f.style.bottom = (dock.offsetHeight + 12) + 'px';
+  $('#s-chat').appendChild(f);
+  setTimeout(function () { f.remove(); }, 1200);
+}
+function clearDock() { dock.innerHTML = ''; dock.onclick = null; keyHandler = null; DBG.ask = null; }
+
+function stepsCard(st) {
+  return '<div class="ctitle">الحل خطوة بخطوة 👣</div>' +
+    st.steps.map(function (s) { return eq(s, 'step'); }).join('') +
+    '<div class="ans">الجواب: <b>' + unitTxt(F(st.ans, st.d == null ? 2 : st.d), st.unit) + '</b></div>';
+}
+
+function doChoose(st, tok) {
+  return new Promise(function (resolve) {
+    var flavor = !hasCorrect(st);
+    var opts = shuffle(st.opts.map(function (o) { return { l: o[0], ok: flavor || !!o[1] }; }));
+    var wrong = 0, busy = false;
+    var who = st.who || run.sc.who;
+    dock.innerHTML = (st.q ? '<div class="qrow"><span class="qlabel">' + rich(st.q) + '</span></div>' : '') +
+      '<div class="choices' + (opts.length === 4 ? ' two' : '') + '">' +
+      opts.map(function (o, i) { return '<button class="chip" type="button" data-i="' + i + '">' + rich(o.l) + '</button>'; }).join('') + '</div>';
+    DBG.ask = { type: 'choose', correct: opts.map(function (o) { return o.ok; }) };
+    scrollDown();
+    dock.onclick = function (e) {
+      var b = e.target.closest ? e.target.closest('.chip') : null;
+      if (!b || busy || b.disabled) return;
+      busy = true;
+      var o = opts[+b.getAttribute('data-i')];
+      addMsg('me', o.l);
+      if (o.ok) {
+        b.classList.add('right');
+        if (!flavor) { gain(wrong === 0 ? 10 : 5); sfx.ok(); }
+        clearDock();
+        var line = flavor ? null : (st.right || praise());
+        (line ? doSay({ who: who, text: line }, tok) : sleep(200)).then(function () { if (alive(tok)) resolve(); });
+      } else {
+        wrong++;
+        b.classList.add('wrong'); b.disabled = true;
+        sfx.bad(); buzz();
+        if (wrong >= 2) {
+          clearDock();
+          var c = opts.filter(function (x) { return x.ok; })[0];
+          doSay({ who: 'guide', text: 'ولا يهمك 🤝 الجواب الصحيح: **' + c.l + '**' + (st.hint ? '\n' + st.hint : '') }, tok)
+            .then(function () { if (alive(tok)) resolve(); });
+        } else {
+          doSay({ who: 'guide', text: st.hint ? 'قريب! 💡 ' + st.hint : 'قريب! فكّر مرة ثانية 🤔' }, tok)
+            .then(function () { busy = false; });
+        }
+      }
+    };
+  });
+}
+
+var KEYS = ['1', '2', '3', 'del', '4', '5', '6', '.', '7', '8', '9', '0'];
+function doNum(st, tok) {
+  return new Promise(function (resolve) {
+    var v = '', wrong = 0, busy = false, hinted = false;
+    var unit = st.unit || '';
+    var who = st.who || run.sc.who;
+    dock.innerHTML =
+      '<div class="qrow"><span class="qlabel">' + rich(st.q || 'اكتب الجواب') + '</span>' +
+      (st.hint ? '<button class="hintbtn" type="button" data-hint>💡 تلميح</button>' : '') + '</div>' +
+      '<div class="inbar"><div class="display"><span class="v"></span><span class="u">' + (unit === '%' ? '٪' : esc(unit)) + '</span></div>' +
+      '<button class="send" type="button" data-send disabled>تحقّق ✓</button></div>' +
+      '<div class="keys">' + KEYS.map(function (k) {
+        var label = k === 'del' ? '⌫' : k === '.' ? '٫' : AR[+k];
+        var aria = k === 'del' ? 'مسح' : k === '.' ? 'فاصلة عشرية' : k;
+        return '<button class="key' + (k === 'del' || k === '.' ? ' fn' : '') + '" type="button" data-k="' + k + '" aria-label="' + aria + '">' + label + '</button>';
+      }).join('') + '</div>';
+    DBG.ask = { type: 'num', ans: st.ans, tol: st.tol };
+    var vEl = $('.v', dock), send = $('[data-send]', dock), disp = $('.display', dock);
+    function render() {
+      vEl.innerHTML = v ? ar(v) : '<span class="ph">اكتب الجواب…</span>';
+      send.disabled = !v || v === '.';
+    }
+    function press(k) {
+      if (busy) return;
+      if (k === 'del') v = v.slice(0, -1);
+      else if (k === '.') { if (v.indexOf('.') < 0) v = (v || '0') + '.'; }
+      else if (v.length < 10) v = (v === '0' ? k : v + k);
+      render();
+    }
+    function submit() {
+      if (busy || !v || v === '.') return;
+      busy = true;
+      var n = parseFloat(v), shown = v.replace(/\.$/, '');
+      addMsg('me', unitTxt(ar(shown), unit), true);
+      var tol = st.tol != null ? st.tol : 0.005;
+      if (Math.abs(n - st.ans) <= tol) {
+        gain(wrong === 0 ? 10 : 5); sfx.ok();
+        clearDock();
+        doSay({ who: who, text: st.right || praise() }, tok).then(function () { if (alive(tok)) resolve(); });
+      } else {
+        wrong++; sfx.bad(); buzz();
+        disp.classList.remove('shake'); void disp.offsetWidth; disp.classList.add('shake');
+        v = ''; render();
+        if (wrong >= 2) {
+          clearDock();
+          doSay({ who: 'guide', text: 'ولا يهمك 🤝 خلني أوريك الحل خطوة بخطوة:' }, tok)
+            .then(function () { if (alive(tok)) return doCard({ html: stepsCard(st) }, tok); })
+            .then(function () { if (alive(tok)) resolve(); });
+        } else {
+          var t = 'قريب! جرّب مرة ثانية 💪' + (st.hint && !hinted ? '\n💡 ' + st.hint : '\nراجع حسابك بهدوء 🔍');
+          hinted = true;
+          var hb = $('[data-hint]', dock); if (hb) hb.disabled = true;
+          doSay({ who: 'guide', text: t }, tok).then(function () { busy = false; });
+        }
+      }
+    }
+    dock.onclick = function (e) {
+      var t = e.target.closest ? e.target.closest('button') : null;
+      if (!t) return;
+      if (t.hasAttribute('data-k')) press(t.getAttribute('data-k'));
+      else if (t.hasAttribute('data-send')) submit();
+      else if (t.hasAttribute('data-hint') && !busy) {
+        t.disabled = true; hinted = true; busy = true;
+        doSay({ who: 'guide', text: '💡 ' + st.hint }, tok).then(function () { busy = false; });
+      }
+    };
+    keyHandler = function (e) {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      var k = e.key, i = AR.indexOf(k);
+      if (i >= 0) k = String(i);
+      i = '۰۱۲۳۴۵۶۷۸۹'.indexOf(k); if (i >= 0) k = String(i);
+      if (/^[0-9]$/.test(k)) press(k);
+      else if (k === '.' || k === ',' || k === '٫') press('.');
+      else if (k === 'Backspace') press('del');
+      else if (k === 'Enter') submit();
+      else return;
+      e.preventDefault();
+    };
+    DBG.type = function (s) { String(s).split('').forEach(function (c) { press(c); }); submit(); };
+    render();
+    scrollDown();
+  });
+}
+document.addEventListener('keydown', function (e) {
+  var a = document.activeElement;
+  if (a && /^(INPUT|TEXTAREA)$/.test(a.tagName)) return;
+  if (keyHandler && $('#cert').hidden) keyHandler(e);
+});
+
+function startScene(id) {
+  var idx = -1;
+  for (var i = 0; i < SCENES.length; i++) if (SCENES[i].id === id) idx = i;
+  if (idx < 0) { nav('map', true); return; }
+  var sc = SCENES[idx];
+  show('chat');
+  var tok = {};
+  run = { sc: sc, idx: idx, tok: tok, pts: 0, max: sc.steps.filter(isScored).length * 10 };
+  lastWho = null; log.innerHTML = ''; clearDock();
+  $('#cIcon').textContent = sc.icon; $('#cIcon').style.background = sc.color;
+  $('#cTitle').textContent = sc.title; $('#cCast').textContent = sc.cast;
+  $('#cPts').textContent = '⭐ ' + ar(0);
+  $('#cProg').style.width = '0%';
+  var steps = sc.steps, i2 = 0;
+  doCard({ html: '<div class="intro"><span class="iicon" style="background:' + sc.color + '">' + sc.icon + '</span><div><b>' + sc.title + '</b><p>🎯 ' + rich(sc.goal) + '</p><small>اضغط على المحادثة لو تبي تسرّعها ⏩</small></div></div>' }, tok)
+    .then(function next() {
+      if (!alive(tok)) return;
+      if (i2 >= steps.length) { $('#cProg').style.width = '100%'; finish(); return; }
+      $('#cProg').style.width = (i2 / steps.length * 100) + '%';
+      var st = steps[i2++];
+      var p = st.t === 'say' ? doSay(st, tok) : st.t === 'card' ? doCard(st, tok) : st.t === 'choose' ? doChoose(st, tok) : doNum(st, tok);
+      return p.then(next);
+    });
+}
+
+function finish() {
+  var sc = run.sc;
+  var ratio = run.max ? run.pts / run.max : 1;
+  var stars = ratio >= 0.85 ? 3 : ratio >= 0.55 ? 2 : 1;
+  ST.best[sc.id] = Math.max(ST.best[sc.id] || 0, run.pts);
+  ST.stars[sc.id] = Math.max(ST.stars[sc.id] || 0, stars);
+  save();
+  var isFinal = sc.id === 'final';
+  var msg = isFinal
+    ? (stars === 3 ? 'أنت تاجر نسب محترف! 🏆' : stars === 2 ? 'أداء قوي! راجع الملخص وتصير محترف 💪' : 'بداية حلوة! جرّب المحطات مرة ثانية وارجع 💡')
+    : (stars === 3 ? 'أداء خرافي! 🔥' : stars === 2 ? 'حلو! تقدر تعيدها وتجيب ٣ نجوم' : 'ولا يهمك، كل مرة تصير أقوى 💪');
+  var el = document.createElement('div');
+  el.className = 'card';
+  el.innerHTML = '<div class="done"><div class="big">' + (isFinal ? '🏆' : '🎉') + '</div><b>' + (isFinal ? 'نتيجتك في المسابقة' : 'خلّصت «' + sc.title + '»!') + '</b>' +
+    '<div class="st">' + '★'.repeat(stars) + '<em>' + '★'.repeat(3 - stars) + '</em></div>' +
+    '<p>جمعت ' + ar(run.pts) + ' ⭐ من ' + ar(run.max) + '<br>' + msg + '</p></div>';
+  log.appendChild(el); lastWho = null; scrollDown();
+  sfx.win(); confetti();
+  var nextSc = SCENES[run.idx + 1];
+  var arrowL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>';
+  dock.innerHTML = '<div class="endbtns">' +
+    (isFinal ? '<button class="btn pri" type="button" data-cert>🏅 شهادتي</button>'
+             : '<button class="btn pri" type="button" data-play-next="' + (nextSc ? nextSc.id : '') + '">المحطة التالية ' + arrowL + '</button>') +
+    '<button class="btn sec" type="button" data-back="map">🗺️ الخريطة</button></div>';
+  dock.onclick = null;
+  scrollDown();
+}
+
+/* ---------- احتفال ---------- */
+function confetti() {
+  if (reduceMotion) return;
+  var c = $('#fx'), ctx = c.getContext('2d');
+  var dpr = Math.min(window.devicePixelRatio || 1, 2), W = window.innerWidth, H = window.innerHeight;
+  c.width = W * dpr; c.height = H * dpr; ctx.scale(dpr, dpr);
+  var cs = getComputedStyle(document.documentElement);
+  var cols = ['--part', '--rate', '--whole', '--gold', '--brand'].map(function (v) { return cs.getPropertyValue(v).trim() || '#f59f00'; });
+  var P = [];
+  for (var i = 0; i < 110; i++) P.push({ x: W / 2 + (Math.random() - 0.5) * W * 0.4, y: H * 0.42, vx: (Math.random() - 0.5) * 11, vy: -Math.random() * 13 - 4, s: 6 + Math.random() * 6, r: Math.random() * 6, vr: (Math.random() - 0.5) * 0.35, c: cols[i % cols.length] });
+  var t0 = performance.now(), last = t0;
+  function frame(t) {
+    var dt = Math.min(32, t - last) / 16; last = t;
+    ctx.clearRect(0, 0, W, H);
+    P.forEach(function (p) {
+      p.vy += 0.35 * dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vx *= 0.99; p.r += p.vr * dt;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c; ctx.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2); ctx.restore();
+    });
+    if (t - t0 < 2300) requestAnimationFrame(frame); else ctx.clearRect(0, 0, W, H);
+  }
+  requestAnimationFrame(frame);
+}
+
+/* =========================================================
+   الشاشات والتنقل
+   ========================================================= */
+function show(id) {
+  $$('.screen').forEach(function (s) { s.classList.toggle('active', s.id === 's-' + id); });
+  if (id !== 'chat') { run = null; clearDock(); }
+  updateTotals();
+}
+function updateTotals() {
+  $$('[data-total]').forEach(function (el) { el.textContent = '⭐ ' + ar(total()); });
+  $$('[data-mute]').forEach(function (el) { el.textContent = ST.mute ? '🔇' : '🔊'; el.setAttribute('aria-label', ST.mute ? 'تشغيل الصوت' : 'كتم الصوت'); });
+}
+function renderHome() {
+  var started = Object.keys(ST.stars).length > 0;
+  $('#ctaBtn').textContent = started ? 'كمّل رحلتك في السوق 🚪' : 'يلا ندخل السوق 🚪';
+  $('#certTile').hidden = !ST.stars.final;
+}
+function renderMap() {
+  var doneCount = SCENES.filter(function (s) { return ST.stars[s.id]; }).length;
+  var nx = SCENES.filter(function (s) { return !ST.stars[s.id]; })[0];
+  var nextId = nx ? nx.id : null;
+  $('#mapProg').innerHTML = '<div class="prog-top"><span>تقدّمك في السوق</span><span>' + ar(doneCount) + ' / ' + ar(SCENES.length) + '</span></div>' +
+    '<div class="ptrack"><i style="width:' + (doneCount / SCENES.length * 100) + '%"></i></div>';
+  var chev = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>';
+  $('#street').innerHTML = SCENES.map(function (s, i) {
+    var st = ST.stars[s.id] || 0;
+    return '<li class="stop' + (st ? ' done' : '') + (s.id === nextId ? ' next' : '') + '"><span class="dot">' + (st ? '✓' : ar(i + 1)) + '</span>' +
+      '<button class="shop" type="button" data-play="' + s.id + '"><span class="sicon" style="background:' + s.color + '">' + s.icon + '</span>' +
+      '<span class="sbody"><b>' + s.title + '</b><small>' + rich(s.goal) + '</small>' +
+      (st ? '<span class="stars">' + '★'.repeat(st) + '<em>' + '★'.repeat(3 - st) + '</em></span>' : (s.id === nextId ? '<span class="badge">ابدأ من هنا ✨</span>' : '')) +
+      '</span>' + chev + '</button></li>';
+  }).join('');
+}
+
+var stack = [];
+function cur() { var h = location.hash.slice(1); try { h = decodeURIComponent(h); } catch (e) {} return h || 'home'; }
+function nav(h, replace) {
+  if (replace) {
+    try { history.replaceState(null, '', '#' + h); } catch (e) {}
+    stack[stack.length ? stack.length - 1 : 0] = h;
+    route();
+  } else if (cur() === h) {
+    route();
+  } else {
+    stack.push(h);
+    location.hash = h;
+  }
+}
+function goBack(parent) {
+  if (stack.length > 1 && stack[stack.length - 2] === parent) history.back();
+  else nav(parent, true);
+}
+window.addEventListener('hashchange', function () {
+  var h = cur();
+  if (stack.length > 1 && stack[stack.length - 2] === h) stack.pop();
+  else if (stack[stack.length - 1] !== h) stack.push(h);
+  route();
+});
+function route() {
+  closeCert();
+  var h = cur();
+  if (h.indexOf('play-') === 0) { startScene(h.slice(5)); return; }
+  if (h === 'map') { renderMap(); show('map'); return; }
+  if (h === 'sheet') { show('sheet'); return; }
+  if (h === 'solver') { show('solver'); return; }
+  renderHome(); show('home');
+}
+
+document.addEventListener('click', function (e) {
+  var t = e.target.closest ? e.target.closest('[data-go],[data-play],[data-back],[data-play-next],[data-cert],[data-mute],[data-close]') : null;
+  if (!t) return;
+  if (t.hasAttribute('data-go')) nav(t.getAttribute('data-go'));
+  else if (t.hasAttribute('data-play')) nav('play-' + t.getAttribute('data-play'));
+  else if (t.hasAttribute('data-play-next')) { var n = t.getAttribute('data-play-next'); if (n) nav('play-' + n, true); else goBack('map'); }
+  else if (t.hasAttribute('data-back')) goBack(t.getAttribute('data-back'));
+  else if (t.hasAttribute('data-cert')) openCert();
+  else if (t.hasAttribute('data-mute')) { ST.mute = !ST.mute; save(); updateTotals(); if (!ST.mute) sfx.ok(); }
+  else if (t.hasAttribute('data-close')) closeCert();
+});
+
+/* ---------- الشهادة ---------- */
+function dateStr() {
+  try { return new Date().toLocaleDateString('ar-SA', { year: 'numeric', month: 'long', day: 'numeric' }); } catch (e) { return ''; }
+}
+function openCert() {
+  var m = $('#cert'), inp = $('#certName');
+  inp.value = ST.name || '';
+  var draw = function () {
+    var n = inp.value.trim();
+    $('#certNameOut').textContent = n || 'تاجر النِّسَب';
+    ST.name = n; save();
+  };
+  inp.oninput = draw; draw();
+  $('#certStars').textContent = ar(total());
+  $('#certDate').textContent = dateStr();
+  m.hidden = false;
+}
+function closeCert() { var m = $('#cert'); if (m) m.hidden = true; }
+$('#cert').addEventListener('click', function (e) { if (e.target === this) closeCert(); });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCert(); });
+
+/* =========================================================
+   الملخص + المثلث السحري
+   ========================================================= */
+function buildSheet() {
+  var c1 = 0.85 * 920, c2 = 62 / 186, c3 = 210 / 0.75;
+  var html =
+    '<div class="sec"><h2>١. وش يعني النسبة المئوية؟</h2>' +
+    '<p>' + rich('النسبة المئوية = **كم من كل 100**. مثلًا 25% يعني 25 من كل 100.') + '</p>' +
+    '<p class="note">' + rich('وعشان نحسب فيها نحوّلها لعدد عشري: **نقسم على 100**') + '</p>' +
+    '<div style="margin-top:8px">' + convRows([25, 85, 7, 150]) + '</div></div>' +
+
+    '<div class="sec"><h2>٢. القانون السحري 🪄</h2>' + ruleCard() + '</div>' +
+
+    '<div class="sec"><h2>٣. المثلث السحري 🔺</h2>' +
+    '<p class="note">اضغط على الشيء اللي تبي تطلعه (غطّه) ويطلع لك القانون:</p>' +
+    '<svg class="tri" viewBox="0 0 240 212" role="group" aria-label="المثلث السحري">' +
+      '<g class="reg" data-k="p" role="button" tabindex="0" aria-label="أبي الجزء"><polygon points="120,10 188,127 52,127"/><text class="tp" x="120" y="86" dy=".35em">ج</text></g>' +
+      '<g class="reg" data-k="r" role="button" tabindex="0" aria-label="أبي النسبة"><polygon points="120,127 188,127 232,202 120,202"/><text class="tr" x="162" y="166" dy=".35em">ن</text></g>' +
+      '<g class="reg" data-k="w" role="button" tabindex="0" aria-label="أبي الكل"><polygon points="52,127 120,127 120,202 8,202"/><text class="tw" x="78" y="166" dy=".35em">ك</text></g>' +
+      '<polygon class="edge" points="120,10 232,202 8,202"/><line class="edge" x1="52" y1="127" x2="188" y2="127"/><line class="edge" x1="120" y1="127" x2="120" y2="202"/>' +
+      '<circle class="xop" cx="120" cy="166" r="12"/><text class="xt" x="120" y="166" dy=".35em">×</text>' +
+    '</svg><div class="tri-out" id="triOut"><p class="note">👆 اختر وحدة من الثلاث</p></div></div>' +
+
+    '<div class="sec"><h2>٤. الحالات الثلاث</h2><div class="cases">' +
+      '<div class="case p"><h3>' + rich('نطلع [p:الجزء] ← نضرب ✖️') + '</h3><p>' + rich('أوجد 85% من 920') + '</p>' +
+        eq('ج = 0.85 × 920 = ' + fmt(c1), 'step') + '</div>' +
+      '<div class="case r"><h3>' + rich('نطلع [r:النسبة] ← نقسم ➗') + '</h3><p>' + rich('ما النسبة المئوية للعدد 62 من 186؟') + '</p>' +
+        eq('62 = ن × 186', 'step') + eq('ن = 62 ÷ 186 ≈ ' + fmt(c2, 3) + ' ≈ ' + fmt(c2 * 100, 1) + '%', 'step') + '</div>' +
+      '<div class="case w"><h3>' + rich('نطلع [w:الكل] ← نقسم ➗') + '</h3><p>' + rich('ما العدد الذي 75% منه يساوي 210؟') + '</p>' +
+        eq('210 = 0.75 × ك', 'step') + eq('ك = 210 ÷ 0.75 = ' + fmt(c3), 'step') + '</div>' +
+    '</div></div>' +
+
+    '<div class="sec"><h2>٥. الربح والخسارة والخصم 💰</h2><ul class="list">' +
+      '<li>' + rich('📈 **ربح 7%** ← سعر البيع = 1.07 × الثمن\nمثال: 1.07 × 1225 = ' + fmt(1.07 * 1225)) + '</li>' +
+      '<li>' + rich('📉 **خسارة 5%** ← سعر البيع = 0.95 × الثمن\nمثال: 0.95 × 2500 = ' + fmt(0.95 * 2500)) + '</li>' +
+      '<li>' + rich('🏷️ **خصم 8%** وصار السعر 1380 ← 1380 = 0.92 × ك\nك = 1380 ÷ 0.92 = ' + fmt(1380 / 0.92)) + '</li>' +
+    '</ul></div>' +
+
+    '<div class="sec"><h2>٦. حيل سريعة ⚡</h2><ul class="list">' +
+      '<li>' + rich('10% ← اقسم على 10 (10% من 340 = ' + fmt(340 / 10) + ')') + '</li>' +
+      '<li>' + rich('50% ← النص • 25% ← الربع • 75% ← ثلاثة أرباع') + '</li>' +
+      '<li>' + rich('1% ← اقسم على 100') + '</li>' +
+      '<li>' + rich('[r:أ%] من [w:ب] = [r:ب%] من [w:أ]\nمثال: 8% من 50 = 50% من 8 = ' + fmt(0.08 * 50)) + '</li>' +
+    '</ul></div>' +
+
+    '<div class="sec"><h2>٧. انتبه من الفخ ⚠️</h2>' +
+      '<p>' + rich('زيادة 20% وبعدها خصم 20% **ما ترجّعك** للسعر الأصلي!') + '</p>' +
+      eq('1.2 × 0.8 = ' + fmt(1.2 * 0.8), 'step') +
+      '<p class="note">' + rich('يعني السعر النهائي = ' + fmt(1.2 * 0.8 * 100) + '% من الأصلي (أقل منه) لأن الخصم انحسب من رقم أكبر.') + '</p></div>' +
+
+    '<button class="cta" type="button" data-go="map">جرّب في السوق 🚪</button>';
+  $('#sheetBody').innerHTML = html;
+
+  var OUT = {
+    p: eq('[P:ج] = [r:ن] × [w:ك]', 'big') + '<p class="note">' + rich('غطّيت [p:الجزء] ← الباقيين جنب بعض = **اضرب** ✖️') + '</p>',
+    r: eq('[R:ن] = [p:ج] ÷ [w:ك]', 'big') + '<p class="note">' + rich('غطّيت [r:النسبة] ← اللي فوق ÷ اللي تحت = **اقسم** ➗ (وبعدين × 100)') + '</p>',
+    w: eq('[W:ك] = [p:ج] ÷ [r:ن]', 'big') + '<p class="note">' + rich('غطّيت [w:الكل] ← اللي فوق ÷ اللي تحت = **اقسم** ➗') + '</p>'
+  };
+  var LET = { p: 'ج', r: 'ن', w: 'ك' };
+  function pick(k) {
+    $$('.tri .reg').forEach(function (g) {
+      var on = g.getAttribute('data-k') === k;
+      g.classList.toggle('on', on);
+      $('text', g).textContent = on ? '؟' : LET[g.getAttribute('data-k')];
+    });
+    $('#triOut').innerHTML = OUT[k];
+  }
+  $$('.tri .reg').forEach(function (g) {
+    g.addEventListener('click', function () { pick(g.getAttribute('data-k')); });
+    g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(g.getAttribute('data-k')); } });
+  });
+}
+
+/* =========================================================
+   آلة الحل
+   ========================================================= */
+var SOLVE = {
+  p: { a: ['النسبة', 'r', '%', '85'], b: ['الكل', 'w', '', '920'], t: 'أبي [p:الجزء]' },
+  r: { a: ['الجزء', 'p', '', '62'], b: ['الكل', 'w', '', '186'], t: 'أبي [r:النسبة]' },
+  w: { a: ['الجزء', 'p', '', '210'], b: ['النسبة', 'r', '%', '75'], t: 'أبي [w:الكل]' }
+};
+var solveMode = 'p';
+function buildSolver() {
+  $('#solverBody').innerHTML =
+    '<div class="sec"><h2>وش تبي تطلع؟</h2><div class="seg" role="tablist">' +
+      '<button type="button" data-m="p" role="tab">الجزء</button><button type="button" data-m="r" role="tab">النسبة</button><button type="button" data-m="w" role="tab">الكل</button>' +
+    '</div><div id="solverFields"></div></div>' +
+    '<div class="sec" id="solverOut" aria-live="polite"></div>';
+  $$('.seg button').forEach(function (b) {
+    b.addEventListener('click', function () { setMode(b.getAttribute('data-m')); });
+  });
+  setMode('p');
+}
+function setMode(m) {
+  solveMode = m;
+  $$('.seg button').forEach(function (b) { var on = b.getAttribute('data-m') === m; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+  var cfg = SOLVE[m];
+  var field = function (id, f) {
+    return '<div class="field"><label for="' + id + '">' + rich('[' + f[1] + ':' + f[0] + ']') + '</label><div class="fwrap">' +
+      '<input id="' + id + '" inputmode="decimal" enterkeyhint="done" autocomplete="off" value="' + f[3] + '">' +
+      '<span class="funit">' + (f[2] === '%' ? '٪' : '') + '</span></div></div>';
+  };
+  $('#solverFields').innerHTML = field('sa', cfg.a) + field('sb', cfg.b);
+  $('#sa').addEventListener('input', solveNow);
+  $('#sb').addEventListener('input', solveNow);
+  solveNow();
+}
+function solveNow() {
+  var m = solveMode, a = parseNum($('#sa').value), b = parseNum($('#sb').value);
+  var out = $('#solverOut');
+  if (!isFinite(a) || !isFinite(b)) { out.innerHTML = '<p class="note">اكتب الرقمين فوق ويطلع لك الحل هنا 👆</p>'; return; }
+  var steps = [], res = '', vis = '', r;
+  if (m === 'p') {
+    r = a / 100; var part = r * b;
+    steps = ['[r:ن] = ' + fmt(a, 4) + '% = ' + fmt(r, 4), '[p:ج] = [r:ن] × [w:ك]', '[P:ج] = [r:' + fmt(r, 4) + '] × [w:' + fmt(b, 4) + ']', '[P:ج] = ' + fmt(part)];
+    res = '[p:الجزء] = ' + fmt(part);
+    if (a > 0 && a <= 300) vis = bar({ whole: b, part: part, pct: a, unk: null });
+  } else if (m === 'r') {
+    if (b === 0) { out.innerHTML = '<p class="note">' + rich('[w:الكل] ما يصير صفر 🙃') + '</p>'; return; }
+    r = a / b; var pc = r * 100;
+    steps = ['[p:ج] = [r:ن] × [w:ك]', '[p:' + fmt(a, 4) + '] = [R:ن] × [w:' + fmt(b, 4) + ']', '[R:ن] = [p:' + fmt(a, 4) + '] ÷ [w:' + fmt(b, 4) + ']', '[R:ن] ≈ ' + fmt(r, 4), 'النسبة ≈ ' + fmt(r, 4) + ' × 100 = ' + fmt(pc, 2) + '%'];
+    res = '[r:النسبة] ≈ ' + fmt(pc, 2) + '%';
+    if (pc > 0 && pc <= 300) vis = bar({ whole: b, part: a, pct: pc, unk: null });
+  } else {
+    r = b / 100;
+    if (r === 0) { out.innerHTML = '<p class="note">' + rich('[r:النسبة] ما تصير صفر 🙃') + '</p>'; return; }
+    var whole = a / r;
+    steps = ['[r:ن] = ' + fmt(b, 4) + '% = ' + fmt(r, 4), '[p:ج] = [r:ن] × [w:ك]', '[p:' + fmt(a, 4) + '] = [r:' + fmt(r, 4) + '] × [W:ك]', '[W:ك] = [p:' + fmt(a, 4) + '] ÷ [r:' + fmt(r, 4) + ']', '[W:ك] = ' + fmt(whole)];
+    res = '[w:الكل] = ' + fmt(whole);
+    if (b > 0 && b <= 300) vis = bar({ whole: whole, part: a, pct: b, unk: null });
+  }
+  out.innerHTML = '<h2>الحل خطوة بخطوة 👣</h2>' + steps.map(function (s) { return eq(s, 'step'); }).join('') +
+    '<div class="result-big">' + rich(res) + '</div>' + vis;
+}
+
+/* =========================================================
+   فحص ذاتي: يتأكد إن الأجوبة صحيحة والخيارات ما تتكرر
+   ========================================================= */
+function selfCheck() {
+  var errs = [];
+  SCENES.forEach(function (sc) {
+    sc.steps.forEach(function (st, i) {
+      if (st.t === 'choose') {
+        var labels = st.opts.map(function (o) { return o[0]; });
+        var uniq = labels.filter(function (l, j) { return labels.indexOf(l) === j; });
+        if (uniq.length !== labels.length) errs.push(sc.id + '#' + i + ' خيارات مكررة');
+        var nOk = st.opts.filter(function (o) { return o[1]; }).length;
+        if (nOk > 1) errs.push(sc.id + '#' + i + ' أكثر من جواب صحيح');
+      }
+      if (st.t === 'num' && !isFinite(st.ans)) errs.push(sc.id + '#' + i + ' جواب غير صالح');
+      if (st.t === 'num' && (!st.steps || !st.steps.length)) errs.push(sc.id + '#' + i + ' بدون خطوات حل');
+    });
+  });
+  // مقارنة مع إجابات الكتاب
+  [[0.85 * 920, 782], [62 / 186 * 100, 33.3, 0.05], [1380 / 0.92, 1500], [1.07 * 1225, 1310.75], [0.95 * 2500, 2375],
+   [680 / 0.34, 2000], [0.07 * 129900, 9093], [1400 * 1.1, 1540], [0.85 * 18, 15.3], [1.4 * 5300, 7420], [1.075 * 260, 279.5],
+   [9 / 0.03, 300], [30 / 0.15, 200], [6 / 750 * 100, 0.8], [25 / 625 * 100, 4], [0.24 * 84, 20.16], [210 / 0.75, 280]
+  ].forEach(function (c) { if (Math.abs(c[0] - c[1]) > (c[2] || 0.005)) errs.push('لا يطابق الكتاب: ' + c[0] + ' ≠ ' + c[1]); });
+  if (bestFact !== 'أ') errs.push('المصنع الأفضل يجب أن يكون أ');
+  if (errs.length) console.error('[selfCheck]', errs); else console.info('[selfCheck] OK');
+  return errs;
+}
+DBG.selfCheck = selfCheck;
+
+/* ---------- تشغيل ---------- */
+buildSheet();
+buildSolver();
+selfCheck();
+stack = [cur()];
+route();
+})();
+</script>
+</body>
+</html>
